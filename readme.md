@@ -15,3 +15,5 @@ Fecha 15 - Exposiciones parciales:
  - Debe existir al menos una relación de herencia entre los templates.
  - Debe existir al menos un filtro aplicado.
  - Debe existir al menos un template que utilice archivos estáticos (js, css, etc).
+
+ 
