@@ -1,0 +1,61 @@
+#formulario {
+  margin-bottom: 20px;
+}
+
+#formulario input[type="text"],
+#formulario button {
+  display: block;
+  margin-bottom: 10px;
+}
+
+#productosTable {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#productosTable th,
+#productosTable td {
+  padding: 8px;
+  text-align: left;
+}
+
+#productosTable th {
+  background-color: #f2f2f2;
+}
+
+#productosTable tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+#productosTable tr:hover {
+  background-color: #e6e6e6;
+}
+
+#productosTable td:last-child {
+  text-align: center;
+}
+
+.ventana-emergente {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+}
+
+#formularioEditar {
+  display: none;
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+#productosTable td img {
+  width: 200px; /* Ajusta el ancho de la imagen según tus necesidades */
+  height: 150px; /* Ajusta la altura de la imagen según tus necesidades */
+}
