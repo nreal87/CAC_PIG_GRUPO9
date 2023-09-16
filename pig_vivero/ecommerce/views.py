@@ -5,3 +5,7 @@ from django.http import HttpResponse
 def index(request):
     context = {}
     return render(request, "index.html", context)
+
+def styles(request):
+    context = {}
+    return render(request, "assets/css/styles.css", context)
