@@ -2,6 +2,7 @@
 <html lang="es">
 
 <head>
+  {% load static %}
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,9 +11,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap"
     rel="stylesheet" />
-  {% comment %} <link rel="stylesheet" href="css/styles.css" />  {% endcomment %}
-  <style> {% include "assets/css/styles.css" %} </style>
-  <link rel="shortcut icon" href="./templates/assets/images/icono.png" type="image/x-icon">
+  <link rel="stylesheet" href="{% static "ecommerce/css/styles.css" %}" /> 
+  <link rel="shortcut icon" href="{% static "ecommerce/images/icono.png" %}" type="image/x-icon">
   
 </head>
 
@@ -23,7 +23,7 @@
     <nav class="navegacion">
       <div class="navegacion__logo">
         <a href="#portada">
-        <img class="img" src="./assets/images/logo.png" alt="logo">
+        <img class="img" src="{% static "ecommerce/images/logo.png" %}" alt="logo">
       </a>
       </div>
       <ul class="menu">
@@ -74,10 +74,10 @@
 
     <div class="slider">
       <ul>
-        <li><img src="./assets/images/carrusel0.jpg" alt="lirios rosa"></li>
-        <li><img src="./assets/images/carrusel1.jpg" alt="lirios amarillo"></li>
-        <li><img src="./assets/images/carrusel2.jpg" alt="lirios rojo"></li>
-        <li><img src="./assets/images/carrusel3.jpg" alt="jardin de lirios"></li>
+        <li><img src="{% static "ecommerce/images/carrusel0.jpg" %}" alt="lirios rosa"></li>
+        <li><img src="{% static "ecommerce/images/carrusel1.jpg" %}" alt="lirios amarillo"></li>
+        <li><img src="{% static "ecommerce/images/carrusel2.jpg" %}" alt="lirios rojo"></li>
+        <li><img src="{% static "ecommerce/images/carrusel3.jpg" %}" alt="jardin de lirios"></li>
       </ul>
     </div>
     <div class="portada__box">
@@ -346,10 +346,10 @@
 
   <!-- Icono flotante de whatsapp -->
   <div id="whatsapp">
-    <a href="#"><img src="./assets/icons/whatsapp.png" alt="icono de whatsapp"></a>
+    <a href="#"><img src="{% static "ecommerce/icons/whatsapp.png" %}" alt="icono de whatsapp"></a>
   </div>
-  <script src="./assets/js/index.js"></script>
-  <script src="./assets/js/consumo_api.js"></script>
+  <script src="{% static "ecommerce/js/index.js" %}"></script>
+  <script src="{% static "ecommerce/consumo_api.js" %}"></script>
   <script src="https://kit.fontawesome.com/23b68efae4.js" crossorigin="anonymous"></script>
 </body>
 
