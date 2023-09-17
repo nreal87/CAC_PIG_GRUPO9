@@ -6,10 +6,6 @@ def index(request):
     context = {}
     return render(request, "index.html", context)
 
-def styles(request):
-    context = {}
-    return render(request, "assets/css/styles.css", context)
-
 def productos(request):
     context = {}
     return render(request,"productos.html", context)

@@ -2,6 +2,7 @@
 <html lang="es">
 
 <head>
+  {% load static %}
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,9 +11,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap"
     rel="stylesheet" />
-  {% comment %} <link rel="stylesheet" href="css/styles.css" />  {% endcomment %}
-  <style> {% include "assets/css/styles.css" %} </style>
-  <link rel="shortcut icon" href="./templates/assets/images/icono.png" type="image/x-icon">
+  <link rel="stylesheet" href="{% static "ecommerce/css/styles.css" %}" /> 
+  <link rel="shortcut icon" href="{% static "ecommerce/images/icono.png" %}" type="image/x-icon">
   
 </head>
 
@@ -23,7 +23,7 @@
     <nav class="navegacion">
       <div class="navegacion__logo">
         <a href="#portada">
-        <img class="img" src="./assets/images/logo.png" alt="logo">
+        <img class="img" src="{% static "ecommerce/images/logo.png" %}" alt="logo">
       </a>
       </div>
       <ul class="menu">
@@ -74,10 +74,10 @@
 
     <div class="slider">
       <ul>
-        <li><img src="./assets/images/carrusel0.jpg" alt="lirios rosa"></li>
-        <li><img src="./assets/images/carrusel1.jpg" alt="lirios amarillo"></li>
-        <li><img src="./assets/images/carrusel2.jpg" alt="lirios rojo"></li>
-        <li><img src="./assets/images/carrusel3.jpg" alt="jardin de lirios"></li>
+        <li><img src="{% static "ecommerce/images/carrusel0.jpg" %}" alt="lirios rosa"></li>
+        <li><img src="{% static "ecommerce/images/carrusel1.jpg" %}" alt="lirios amarillo"></li>
+        <li><img src="{% static "ecommerce/images/carrusel2.jpg" %}" alt="lirios rojo"></li>
+        <li><img src="{% static "ecommerce/images/carrusel3.jpg" %}" alt="jardin de lirios"></li>
       </ul>
     </div>
     <div class="portada__box">
@@ -105,7 +105,7 @@
     <div class="grid-container">
 
       <div class=grid-item>
-        <img src="./assets/images/lirio_rojo.jpg" alt="imagen de un lirio color rojo." class="image-item" id="item1">
+        <img src="{% static "ecommerce/images/lirio_rojo.jpg" %}" alt="imagen de un lirio color rojo." class="image-item" id="item1">
         <div class="card-info">
           <h4 class="card-title">Lirio Rojo.</h4>
           <p class="card-text">Simbolismo: Amor y Seducción.</p>
@@ -114,7 +114,7 @@
       </div>
 
       <div class=grid-item>
-        <img src="./assets/images/lirio_blanco.jpg" alt="imagen de un lirio color blanco" class="image-item" id="item2">
+        <img src="{% static "ecommerce/images/lirio_blanco.jpg" %}" alt="imagen de un lirio color blanco" class="image-item" id="item2">
         <div class="card-info">
           <h4 class="card-title">Lirio Blanco.</h4>
           <p class="card-text">Simbolismo: Pureza y Belleza.</p>
@@ -123,7 +123,7 @@
       </div>
 
       <div class=grid-item>
-        <img src="./assets/images/lirio_naranja.jpg" alt="imagen de un lirio naranja" class="image-item" id="item3">
+        <img src="{% static "ecommerce/images/lirio_naranja.jpg" %}" alt="imagen de un lirio naranja" class="image-item" id="item3">
         <div class="card-info">
           <h4 class="card-title">Lirio Naranja.</h4>
           <p class="card-text">Simbolismo: Pasión.</p>
@@ -132,7 +132,7 @@
       </div>
 
       <div class=grid-item>
-        <img src="./assets/images/frutales_rojo.jpg" alt="imagen de arbol frutal" class="image-item" id="item4">
+        <img src="{% static "ecommerce/images/frutales_rojo.jpg" %}" alt="imagen de arbol frutal" class="image-item" id="item4">
         <div class="card-info">
           <h4 class="card-title">Árboles frutales.</h4>
           <p class="card-text">Consultar según la temporada.</p>
@@ -141,7 +141,7 @@
       </div>
 
       <div class=grid-item>
-        <img src="./assets/images/cactus_verde.jpg" alt="imagen de cactus." class="image-item" id="item5">
+        <img src="{% static "ecommerce/images/cactus_verde.jpg" %}" alt="imagen de cactus." class="image-item" id="item5">
         <div class="card-info">
           <h4 class="card-title">Cactus.</h4>
           <p class="card-text">Fuentes de éxito personal y laboral.</p>
@@ -150,7 +150,7 @@
       </div>
 
       <div class=grid-item>
-        <img src="./assets/images/gromineas1.jpg" alt="imagen de gromíneas" class="image-item" id="item6">
+        <img src="{% static "ecommerce/images/gromineas1.jpg" %}" alt="imagen de gromíneas" class="image-item" id="item6">
         <div class="card-info">
           <h4 class="card-title">Gromíneas.</h4>
           <p class="card-text">Plantita espetacular para decorar</p>
@@ -159,7 +159,7 @@
       </div>
 
       <div class=grid-item>
-        <img src="./assets/images/fuente_jardin.jpg" alt="imagen de fuentes de jardin" class="image-item" id="item7">
+        <img src="{% static "ecommerce/images/fuente_jardin.jpg" %}" alt="imagen de fuentes de jardin" class="image-item" id="item7">
         <div class="card-info">
           <h4 class="card-title">Fuentes de Jardín</h4>
           <p class="card-text">Contamos con distintos modelos.</p>
@@ -168,7 +168,7 @@
       </div>
 
       <div class=grid-item>
-        <img src="./assets/images/maceta_roja.jpg" alt="imagen de maceta roja." class="image-item" id="item8">
+        <img src="{% static "ecommerce/images/maceta_roja.jpg" %}" alt="imagen de maceta roja." class="image-item" id="item8">
         <div class="card-info">
           <h4 class="card-title">Macetas</h4>
           <p class="card-text">Variedad en colores y modelos.</p>
@@ -177,7 +177,7 @@
       </div>
 
       <div class=grid-item>
-        <img src="./assets/images/herramientas.jpg" alt="imagen de herramientas de jardineria." class="image-item"
+        <img src="{% static "ecommerce/images/herramientas.jpg" %}" alt="imagen de herramientas de jardineria." class="image-item"
           id="item9">
         <div class="card-info">
           <h4 class="card-title">Herramientas.</h4>
@@ -192,19 +192,19 @@
   <section id="informacion">
     <div class="info-container">
       <div class="info-item">
-        <img src="./assets/icons/001-nuevo.png" alt="imagen de promocion.">
+        <img src="{% static "ecommerce/icons/001-nuevo.png" %}" alt="imagen de promocion.">
         <h3>No te pierdas nuestras promociones.</h3>
         <p>Seguinos.</p>
       </div>
 
       <div class="info-item">
-        <img src="./assets/icons/002-cupn.png" alt="imagen de tarjeta de regalo">
+        <img src="{% static "ecommerce/icons/002-cupn.png" %}" alt="imagen de tarjeta de regalo">
         <h3>Regala una Giftcard.</h3>
         <p>Podes realizar regalos por montos.</p>
       </div>
 
       <div class="info-item">
-        <img src="./assets/icons/003-negro.png" alt="imagen de forma de pago.">
+        <img src="{% static "ecommerce/icons/003-negro.png" %}" alt="imagen de forma de pago.">
         <h3>Pago Seguro</h3>
         <p>Realizá tu compra con tarjeta, transferencia o efectivo.</p>
       </div>
@@ -226,7 +226,7 @@
             <h4 class="card-title-serv">Asesoramiento Profesional.</h4>
             <p class="card-text-serv">Despejamos todas sus dudas al instante.</p>
           </div>
-          <img class="image-serv" src="./assets/images/profesional1.jpg" alt="imagen de un profesional botánico.">
+          <img class="image-serv" src="{% static "ecommerce/images/profesional1.jpg" %}" alt="imagen de un profesional botánico.">
         </div>
 
         <div class="serv-flex-item">
@@ -234,7 +234,7 @@
             <h4 class="card-title-serv">Diseño y ejecucion de<br>parques y jardines.</h4>
             <p class="card-text-serv">Contamos con especialistas en paisajismo.</p>
           </div>
-          <img class="image-serv" src="./assets/images/servicio_jardineria.jpg"
+          <img class="image-serv" src="{% static "ecommerce/images/servicio_jardineria.jpg" %}"
             alt="imagen de un paisajista trabajando.">
         </div>
 
@@ -243,7 +243,7 @@
             <h4 class="card-title-serv">Envios a Domicilio.</h4>
             <p class="card-text-serv">Consulte precios por envios a domicilio.</p>
           </div>
-          <img class="image-serv" src="./assets/images/entrega.jpg"
+          <img class="image-serv" src="{% static "ecommerce/images/entrega.jpg" %}"
             alt="imagen de hombre haciendo entrega a domicilio.">
         </div>
       </div>
@@ -255,7 +255,7 @@
     <h2 class=" about_us-title">SOBRE NOSOTROS</h2>
      <div class="about_us__box"> 
             <div class="about_us__box-container">
-            <img class="responsive" src="./assets/images/profesional.jpg" alt="about_us">
+            <img class="responsive" src="{% static "ecommerce/images/profesional.jpg" %}" alt="about_us">
             <br>
             <p>  En nuestra tienda de Lirios, creemos firmemente en el poder transformador de la naturaleza en nuestros hogares y en nuestras vidas. Nos enorgullece ofrecer una amplia variedad de plantas de Lirios de alta calidad, herramientas y accesorios para el cuidado de tus plantas, y servicios de jardinería y asesoramiento para que puedas disfrutar de un hogar lleno de vida y belleza natural.</p>
             <br>
@@ -346,10 +346,10 @@
 
   <!-- Icono flotante de whatsapp -->
   <div id="whatsapp">
-    <a href="#"><img src="./assets/icons/whatsapp.png" alt="icono de whatsapp"></a>
+    <a href="#"><img src="{% static "ecommerce/icons/whatsapp.png" %}" alt="icono de whatsapp"></a>
   </div>
-  <script src="./assets/js/index.js"></script>
-  <script src="./assets/js/consumo_api.js"></script>
+  <script src="{% static "ecommerce/js/index.js" %}"></script>
+  <script src="{% static "ecommerce/consumo_api.js" %}"></script>
   <script src="https://kit.fontawesome.com/23b68efae4.js" crossorigin="anonymous"></script>
 </body>
 
