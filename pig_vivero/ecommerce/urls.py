@@ -20,5 +20,10 @@ from . import views
 urlpatterns = [
     # path('admin/', admin.site.urls),
     path('',views.index, name="index"),
-    path('css/styles.css/',views.styles, name="styles")
+    path('css/styles.css/',views.styles, name="styles"),
+    path('productos/', views.productos, name="productos"),
+    #esta es una ruta parametrizada
+    path('productos/<str:categoria>/', views.producto_categoria, name="productos_categoria"),
+    #agrego ruta para loguin
+    path('login/', views.login, name="loguin"),
 ]

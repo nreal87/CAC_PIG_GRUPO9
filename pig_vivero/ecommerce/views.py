@@ -9,3 +9,15 @@ def index(request):
 def styles(request):
     context = {}
     return render(request, "assets/css/styles.css", context)
+
+def productos(request):
+    context = {}
+    return render(request,"productos.html", context)
+
+def producto_categoria(request, categoria):
+    context = {'categoria' : categoria,}
+    return render(request, "productos.html", context)
+
+def login(request):
+    context = {}
+    return render(request, "login.html", context)
