@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 
 # Create your views here.
@@ -17,3 +17,9 @@ def producto_categoria(request, categoria):
 def login(request):
     context = {}
     return render(request, "login.html", context)
+
+def secciones(request, seccion):
+    direccion = f'/#{seccion}'
+    return redirect(direccion)
+
+

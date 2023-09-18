@@ -1,75 +1,8 @@
-<!DOCTYPE html>
-<html lang="es">
+{% extends "base.html" %}
+{% load static %}
 
-<head>
-  {% load static %}
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vivero Los Lirios</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap"
-    rel="stylesheet" />
-  <link rel="stylesheet" href="{% static "ecommerce/css/styles.css" %}" /> 
-  <link rel="shortcut icon" href="{% static "ecommerce/images/icono.png" %}" type="image/x-icon">
-  
-</head>
-
-<body>
-  <!--Seccion Header-->
-  <header class="header">
-
-    <nav class="navegacion">
-      <div class="navegacion__logo">
-        <a href="#portada">
-        <img class="img" src="{% static "ecommerce/images/logo.png" %}" alt="logo">
-      </a>
-      </div>
-      <ul class="menu">
-        <li class="menu_li"><a class="menu_link" href="#portada">INICIO</a></li>
-        <li class="menu_li"><a class="menu_link" href="#productos">PRODUCTOS</a></li>
-        <li class="menu_li"><a class="menu_link" href="#servicios">SERVICIOS</a></li>
-        <li class="menu_li"><a class="menu_link" href="#about_us">NOSOTROS</a></li>
-        <li class="menu_li"><a class="menu_link" href="#contacto">CONTACTO</a></li>
-        <li class="menu_li">
-          <form action="#" class="form-busqueda">
-            <input type="search" placeholder="Buscar...">
-            <button type="submit"><i class="fa fa-search"></i></button>
-          </form>
-        </li>
-      </ul>
-      <ul class="carrito">
-        <li class="menu_li"><a class="menu_link" href="#">INGRESAR</a></li>
-        <!-- <li class="menu_li"><a class="menu_link" href="#">Log Out</a></li> -->
-        <li class="menu_li"><a class="menu_link" href="#"><i class="fa fa-shopping-cart"></i></a></li>
-      </ul>
-      <!-- MENU PARA CELULAR -->
-      <div id="menu__icono">
-        <i class="fa fa-bars" aria-hidden="true" id="menu-hamburguesa"></i>
-        <i class="fa fa-times close" aria-hidden="true" id="menu-cruz"></i>
-      </div>
-      <div class="menu__celular" id="menu__celular">
-        <ul class="menu">
-          <li class="menu_li"><a class="menu_link" href="#portada">INICIO</a></li>
-          <li class="menu_li"><a class="menu_link" href="#productos">PRODUCTOS</a></li>
-          <li class="menu_li"><a class="menu_link" href="#servicios">SERVICIOS</a></li>
-          <li class="menu_li"><a class="menu_link" href="#about_us">NOSOTROS</a></li>
-          <li class="menu_li"><a class="menu_link" href="#contacto">CONTACTO</a></li>
-          <br>
-          <br>
-          <li class="menu_li"><a class="menu_link" href="#">INGRESAR</a></li>
-          <!-- <li class="menu_li"><a class="menu_link" href="#">Log Out</a></li> -->
-          <li class="menu_li"><a class="menu_link" href="#"><i class="fa fa-shopping-cart"></i></a></li>
-        </ul>
-      </div>
-      <!-- FIN MENU PARA CELULAR -->
-    </nav>
-
-  </header>
-
-  <!-- Seccion portada -->
-
+<!-- Seccion portada -->
+{% block contenido %}
   <section id="portada">
 
     <div class="slider">
@@ -88,7 +21,7 @@
         <br>
         <p>Explora nuestra colección y encuentra el Lirio ideal para dar vida a tu hogar. ¡No esperes más para disfrutar
           de la belleza de la naturaleza en tu hogar!</p>
-        <button><a href="#productos">VER PRODUCTOS</a></button>
+        <button><a href="{% url "productos" %}">VER PRODUCTOS</a></button>
       </div>
     </div>
     <div class="portada__fade"></div>
@@ -109,7 +42,7 @@
         <div class="card-info">
           <h4 class="card-title">Lirio Rojo.</h4>
           <p class="card-text">Simbolismo: Amor y Seducción.</p>
-          <button class="btn-item">IR A COMPRAR</button>
+          <button class="btn-item"><a href="{% url 'productos_categoria' "lirio_rojo" %}">IR A COMPRAR</a></button>
         </div>
       </div>
 
@@ -118,7 +51,7 @@
         <div class="card-info">
           <h4 class="card-title">Lirio Blanco.</h4>
           <p class="card-text">Simbolismo: Pureza y Belleza.</p>
-          <button class="btn-item">IR A COMPRAR</button>
+          <button class="btn-item"><a href="{% url 'productos_categoria' "lirio_blanco" %}">IR A COMPRAR</a></button>
         </div>
       </div>
 
@@ -127,7 +60,7 @@
         <div class="card-info">
           <h4 class="card-title">Lirio Naranja.</h4>
           <p class="card-text">Simbolismo: Pasión.</p>
-          <button class="btn-item">IR A COMPRAR</button>
+          <button class="btn-item"><a href="{% url 'productos_categoria' "lirio_naranja" %}">IR A COMPRAR</a></button>
         </div>
       </div>
 
@@ -136,7 +69,7 @@
         <div class="card-info">
           <h4 class="card-title">Árboles frutales.</h4>
           <p class="card-text">Consultar según la temporada.</p>
-          <button class="btn-item">IR A COMPRAR</button>
+          <button class="btn-item"><a href="{% url 'productos_categoria' "arbol_frutal" %}">IR A COMPRAR</a></button>
         </div>
       </div>
 
@@ -145,7 +78,7 @@
         <div class="card-info">
           <h4 class="card-title">Cactus.</h4>
           <p class="card-text">Fuentes de éxito personal y laboral.</p>
-          <button class="btn-item">IR A COMPRAR</button>
+          <button class="btn-item"><a href="{% url 'productos_categoria' "cactus" %}">IR A COMPRAR</a></button>
         </div>
       </div>
 
@@ -154,7 +87,7 @@
         <div class="card-info">
           <h4 class="card-title">Gromíneas.</h4>
           <p class="card-text">Plantita espetacular para decorar</p>
-          <button class="btn-item">IR A COMPRAR</button>
+          <button class="btn-item"><a href="{% url 'productos_categoria' "gromineas" %}">IR A COMPRAR</a></button>
         </div>
       </div>
 
@@ -163,7 +96,7 @@
         <div class="card-info">
           <h4 class="card-title">Fuentes de Jardín</h4>
           <p class="card-text">Contamos con distintos modelos.</p>
-          <button class="btn-item">IR A COMPRAR</button>
+          <button class="btn-item"><a href="{% url 'productos_categoria' "fuentes" %}">IR A COMPRAR</a></button>
         </div>
       </div>
 
@@ -172,7 +105,7 @@
         <div class="card-info">
           <h4 class="card-title">Macetas</h4>
           <p class="card-text">Variedad en colores y modelos.</p>
-          <button class="btn-item">IR A COMPRAR</button>
+          <button class="btn-item"><a href="{% url 'productos_categoria' "macetas" %}">IR A COMPRAR</a></button>
         </div>
       </div>
 
@@ -182,7 +115,7 @@
         <div class="card-info">
           <h4 class="card-title">Herramientas.</h4>
           <p class="card-text">Palas, regaderas, mangueras y mas.</p>
-          <button class="btn-item">IR A COMPRAR</button>
+          <button class="btn-item"><a href="{% url 'productos_categoria' "herramientas" %}">IR A COMPRAR</a></button>
         </div>
       </div>
     </div>
@@ -297,52 +230,7 @@
     </div>
   </section>
 
-
-
-  <!--Seccion footer-->
-  <section>
-    <footer class="footer">
-      <div class="container">
-        <div class="row">
-          <div class="footer-col">
-            <h4>Compañia</h4>
-            <ul>
-              <li><a href="#about_us">Sobre Nosotros</a></li>
-              <li><a href="#servicios">Servicios</a></li>
-              <li><a href="#productos">Productos</a></li>
-              <li><a href="#"><i class="fa fa-whatsapp"> +549-113245678</i></a></li>
-            </ul>
-          </div>
-          <div class="footer-col">
-            <h4>Ayuda</h4>
-            <ul>
-              <li><a href="#">Envios</a></li>
-              <li><a href="#">Devoluciones</a></li>
-              <li><a href="#">Estado de orden</a></li>
-              <li><a href="#">Opciones de pago</a></li>
-            </ul>
-          </div>
-          <div class="footer-col">
-            <h4>Compra On-line</h4>
-            <ul>
-              <li><a href="#">Ver productos</a></li>
-              <li><a href="#">Ver servicios</a></li>
-            </ul>
-          </div>
-          <div class="footer-col">
-            <h4>Nuestas Redes Sociales</h4>
-            <div class="redes-sociales">
-              <ul>
-                <a href="#"><i class="fab fa-facebook"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-youtube"></i></a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
-  </section>
+{% endblock contenido %}
 
   <!-- Icono flotante de whatsapp -->
   <div id="whatsapp">
