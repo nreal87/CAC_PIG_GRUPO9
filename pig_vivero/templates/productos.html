@@ -1,16 +1,7 @@
-<!DOCTYPE html>
-<html lang="es">
-
-<head>
-  {% load static %}
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>crud</title>
-  #<link rel="stylesheet" href="{% static "ecommerce/css/styles_back.css" %}">
-
-</head>
-
-<body>
+{% extends "base.html" %}
+{% load static %}
+{% block titulo %}-Productos{% endblock titulo %}-Productos
+{% block contenido%}
 
   <div id="formulario">
     <input type="text" id="codigo" placeholder="Código">
@@ -85,8 +76,9 @@
   </div>
   {% if categoria %}
     <h3>Entraste pidiendo la categoría {{categoria}}</h3>
+  {% else %}
+    <h3>Entraste para ver todos los productos </h3>
   {% endif %}
   <script src="{% static "ecommerce/js/script_back.js" %}"></script>
-</body>
 
-</html>
+{% endblock contenido%}
