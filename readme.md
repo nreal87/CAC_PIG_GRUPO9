@@ -2,8 +2,8 @@
 Grupo 9
 
 ## Integrantes
-Nicolas Real
-Luis Escobar
+- Nicolas Real
+- Luis Escobar
 
 ## Primera entrega
 
