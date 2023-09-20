@@ -3,7 +3,7 @@
 {% block titulo %}-Productos{% endblock titulo %}-Productos
 {% block contenido%}
 
-  <div id="formulario">
+  {% comment %} <div id="formulario">
     <input type="text" id="codigo" placeholder="Código">
     <input type="text" id="nombre" placeholder="Nombre">
     <input type="text" id="descripcion" placeholder="Descripción">
@@ -12,7 +12,7 @@
     <input type="text" id="categoria" placeholder="Categoría">
     <input type="text" id="imagen" placeholder="URL de la imagen">
     <button id="btnAgregar">Agregar</button>
-  </div>
+  </div> {% endcomment %}
 
   <table id="productosTable">
     <thead>
@@ -28,11 +28,35 @@
       </tr>
     </thead>
     <tbody id="productosBody">
-
+      {% for producto in productos  %}
+      <tr>  
+        <td>
+            {{producto.codigo}}
+        </td>
+        <td>
+          {{producto.nombre}}
+      </td>
+        <td>
+          {{producto.descripcion}}
+        </td>
+        <td>
+          {{producto.precio}}
+        </td>
+        <td>
+          {{producto.stock}}
+      </td>
+      <td>
+        {{producto.stock}}
+      </td>
+      <td >
+        <img style = "width: 100px;" src= {{producto.imagen}}> 
+      </td>
+      </tr>  
+      {% endfor %}
     </tbody>
   </table>
 
-  <div id="ventanaEmergente" class="ventana-emergente">
+  {% comment %} <div id="ventanaEmergente" class="ventana-emergente">
 
     <div id="formularioEditar" style="display: none;">
       <h2>Editar Producto</h2>
@@ -71,7 +95,7 @@
         <button type="button" id="btnCancelar">Cancelar</button>
         <button type="button" id="btnCerrar">Cerrar</button>
       </form>
-    </div>
+    </div> {% endcomment %}
 
   </div>
   {% if categoria %}
