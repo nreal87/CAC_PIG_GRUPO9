@@ -1,6 +1,10 @@
 # CAC Django - Proyecto integrador grupal
 Grupo 9
 
+## Integrantes
+Nicolas Real
+Luis Escobar
+
 ## Primera entrega
 
 Fecha 15 - Exposiciones parciales:
