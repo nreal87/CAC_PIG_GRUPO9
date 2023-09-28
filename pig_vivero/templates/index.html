@@ -205,7 +205,13 @@
   <section id="contacto">
     <h2 class="contacto__titulo"> CONTACTANOS </h2>
     <div class="contacto__container">
-      <form id="form" action="https://formspree.io/f/moqzbkod" method="POST">
+      <form action="{% url "index" %}" method="POST">
+        {% csrf_token %}
+        {{formulario_contacto}}
+        <button id="submit" type="submit">ENVIAR</button>
+      </form>
+
+      {% comment %} <form id="form" action="https://formspree.io/f/moqzbkod" method="POST">
         <label for="nombre">Nombre:
           <input type="text" name="nombre" id="nombre">
         </label>
@@ -222,7 +228,7 @@
           <textarea name="mensaje" id="mensaje" cols="30" rows="8"></textarea>
         </label>
         <button id="submit" type="submit">ENVIAR</button>
-      </form>
+      </form> {% endcomment %}
       <iframe
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12553.419242785501!2d-61.81092347452089!3d-38.13194196596664!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95eceeb3c5f52fcd%3A0x6d75d51090223690!2sVivero%20Los%20Lirios!5e0!3m2!1ses-419!2sar!4v1683947964591!5m2!1ses-419!2sar"
         width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"

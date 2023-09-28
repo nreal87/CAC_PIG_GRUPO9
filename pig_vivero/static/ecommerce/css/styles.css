@@ -394,7 +394,7 @@ section {
 
 
 .about_us__box {
-  background-image: url("/assets/images/daylilies.jpg");
+  background-image: url("../images/daylilies.jpg");
   background-color: #891d44;
   border-radius: 50px; 
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
