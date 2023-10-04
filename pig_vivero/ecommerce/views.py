@@ -1,11 +1,15 @@
-from django.shortcuts import render, redirect
-from django.http import HttpResponse, HttpResponseBadRequest
-from django.templatetags.static import static
-from datetime import datetime
 from ecommerce.forms import ContactoForm
+from datetime import datetime
+from django.templatetags.static import static
+from django.http import HttpResponse, HttpResponseBadRequest
+from django.shortcuts import render, redirect
+from django.core.exceptions import ValidationError
+from django.contrib import messages
 
 
-def buscar_productos(cat = "todas"):
+
+def __buscar_productos(cat = "todas"):
+
     productos_lista = [ {"codigo" : "1lr", "nombre" : "lirio rojo", "descripcion" : "Simbolismo: Amor y Seducción", "precio" : "8500", "stock" : "15", "categoria" : "lirio", "imagen" : static('ecommerce/images/lirio_rojo.jpg')},
                         {"codigo" : "1lb", "nombre" : "lirio blanco", "descripcion" : "Simbolismo: Pureza y Belleza", "precio" : "8000", "stock" : "10", "categoria" : "lirio", "imagen" : static('ecommerce/images/lirio_blanco.jpg')},
                         {"codigo" : "1ln", "nombre" : "lirio naranja", "descripcion" : "Simbolismo: Simbolismo: Pasión", "precio" : "8000", "stock" : "10", "categoria" : "lirio", "imagen" : static('ecommerce/images/lirio_naranja.jpg')},
@@ -25,38 +29,48 @@ def buscar_productos(cat = "todas"):
         return lista_seleccion
 
 
-
 # Create your views here.
-def index(request): 
+def index(request):
+
     if request.method == 'GET':
         formulario_contacto = ContactoForm()
+    
     elif request.method == 'POST':
         formulario_contacto = ContactoForm(request.POST)
+        if formulario_contacto.is_valid():
+            #Si el formulario pasa las validaciones lo procesamos acá
+            #enviamos mensaje formulario correcto
+            messages.info(request, 'Su consulta se proceso correctamente.')
     else:
         return HttpResponseBadRequest(f'Error http method {request.method}')
     
     context = {"ahora":datetime.now,
                "formulario_contacto": formulario_contacto}
+    
     return render(request, "index.html", context)
-
+    
 
 def productos(request):
+
     context = {"ahora":datetime.now,
-               "productos":buscar_productos()}
+               "productos":__buscar_productos()}
     return render(request,"productos.html", context)
 
 
 def producto_categoria(request, categoria):
+
     context = {"ahora":datetime.now,
-               "productos":buscar_productos(categoria)}
+               "productos":__buscar_productos(categoria)}
     return render(request, "productos.html", context)
 
 
 def login(request):
+
     context = {"ahora":datetime.now}
     return render(request, "login.html", context)
 
 
 def secciones(request, seccion):
+
     direccion = f'/#{seccion}'
     return redirect(direccion)
