@@ -37,5 +37,5 @@ class ContactoForm(forms.Form):
         if len(data) < 10:
             raise ValidationError("La consulta ingresada es muy corta.",
                                    code='Error')
-        return data
+        return self.cleaned_data['consulta']
 

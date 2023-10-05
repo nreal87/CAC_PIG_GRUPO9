@@ -31,19 +31,22 @@ def __buscar_productos(cat = "todas"):
 
 # Create your views here.
 def index(request):
-
+       
     if request.method == 'GET':
         formulario_contacto = ContactoForm()
-    
-    elif request.method == 'POST':
+    """ elif request.method == 'POST':
         formulario_contacto = ContactoForm(request.POST)
         if formulario_contacto.is_valid():
             #Si el formulario pasa las validaciones lo procesamos acá
             #enviamos mensaje formulario correcto
-            messages.info(request, 'Su consulta se proceso correctamente.')
+            messages.success(request, 'Su consulta se proceso correctamente.')
+            return render(request, "index.html" ,{"ahora" : datetime.now, "formulario_contacto" : ContactoForm()})
+        else:
+            messages.error(request, 'Su consulta No se pudo procesar.')
+            return render(request, "index.html" ,{"ahora" : datetime.now, "formulario_contacto" : formulario_contacto})
     else:
         return HttpResponseBadRequest(f'Error http method {request.method}')
-    
+     """
     context = {"ahora":datetime.now,
                "formulario_contacto": formulario_contacto}
     
@@ -72,5 +75,22 @@ def login(request):
 
 def secciones(request, seccion):
 
+    if request.method == 'POST' and seccion == 'contacto':
+        formulario_contacto = ContactoForm(request.POST)
+        if formulario_contacto.is_valid():
+            #Si el formulario pasa las validaciones lo procesamos acá
+            #enviamos mensaje formulario correcto
+            messages.success(request, 'Su consulta se proceso correctamente.')
+            return render(request, "index.html" ,{"ahora" : datetime.now, "formulario_contacto" : ContactoForm()})
+        else:
+            messages.error(request, 'Su consulta No se pudo procesar.')
+            """ ACA ESTAMOS TENIENDO EL ERROR, SI RETORNAMOS UN RENDER NO ENVIA AL INICIO DE LA PAGINA, EL PROBLEMA ES QUE 
+               TENEMOS QUE IR OTRA VEZ A LA SECCION PARA VERIFICAR SI SE PROCESO LA CONSULTA. 
+               SI RETORNAMOS UN REDIRECT NOS DEJA EN LA SECCION DE CONSULTA PERO NO MUESTRA CUALES SON LOS ERRORES QUE 
+               ENCONTRAMOS EN EL FORMULARIO PORQUE A REDIRECT NO LE PODEMOS PASAR EL CONTEXTO PARA QUE LO CARGUE, 
+               LO QUE SE ME OCURRIO ES ENVIAR EL MENSAJE DE ERROR"""
+            #return render(request, "index.html" ,{"ahora" : datetime.now, "formulario_contacto" : formulario_contacto})
+            return redirect('/#contacto')
+       
     direccion = f'/#{seccion}'
     return redirect(direccion)
