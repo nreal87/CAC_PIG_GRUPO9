@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 #from django.contrib import admin
-from django.urls import path, re_path
+from django.urls import path
 from . import views
 
 urlpatterns = [
@@ -26,6 +26,4 @@ urlpatterns = [
     path('productos/<str:categoria>/', views.producto_categoria, name="productos_categoria"),
     #agrego ruta para login
     path('login/', views.login, name="login"),
-    #ruta con expresion regular para ingresar a un tipo de lirio determinado
-    #re_path(r'^productos/(?P<codigo>[0-9]{2})/$', views.producto_categoria, name="lirio"),    
 ]
