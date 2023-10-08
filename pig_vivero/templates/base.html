@@ -25,7 +25,7 @@
       </a>
       </div>
       <ul class="menu">
-        <li class="menu_li"><a class="menu_link" href="{% url "index" %}">INICIO</a></li>
+        <li class="menu_li"><a class="menu_link" href="{% url "secciones" %}">INICIO</a></li>
         <li class="menu_li"><a class="menu_link" href="{% url "secciones" "productos" %}">PRODUCTOS</a></li>
         <li class="menu_li"><a class="menu_link" href="{% url "secciones" "servicios" %}">SERVICIOS</a></li>
         <li class="menu_li"><a class="menu_link" href="{% url "secciones" "about_us" %}">NOSOTROS</a></li>
@@ -49,7 +49,7 @@
       </div>
       <div class="menu__celular" id="menu__celular">
         <ul class="menu">
-          <li class="menu_li"><a class="menu_link" href="{% url "index" %}">INICIO</a></li>
+          <li class="menu_li"><a class="menu_link" href="{% url "secciones" %}">INICIO</a></li>
           <li class="menu_li"><a class="menu_link" href="{% url "secciones" "productos" %}">PRODUCTOS</a></li>
           <li class="menu_li"><a class="menu_link" href="{% url "secciones" "servicios" %}">SERVICIOS</a></li>
           <li class="menu_li"><a class="menu_link" href="{% url "secciones" "about_us" %}">NOSOTROS</a></li>
@@ -118,10 +118,18 @@
     </footer>
   </section>
 <!-- Icono flotante de whatsapp -->
-<div id="whatsapp">
+  <div id="whatsapp">
     <a href="#"><img src="{% static "ecommerce/icons/whatsapp.png" %}" alt="icono de whatsapp"></a>
   </div>
-  <script src="{% static "ecommerce/js/index.js" %}"></script>
+  {% comment %} <script src="{% static "ecommerce/js/index.js" %}"></script> {% endcomment %}
   {% comment %} <script src="{% static "ecommerce/consumo_api.js" %}"></script> {% endcomment %}
+  {% if seccion %}
+    <script>
+      console.log("Seccion: {{ seccion }}")
+      document.getElementById('{{ seccion }}').scrollIntoView();
+    </script>
+  {% endif %}
   <script src="https://kit.fontawesome.com/23b68efae4.js" crossorigin="anonymous"></script>
 
+</body>
+</html>

@@ -3,6 +3,10 @@
 
 <!-- Seccion portada -->
 {% block contenido %}
+
+  {% comment %} <h2>Seccion: {{ seccion }}</h2> {% endcomment %}
+  
+
   <section id="portada">
 
     <div class="slider">
@@ -213,7 +217,7 @@
         {% endif %}
       {% endfor %}
     {% endif %}
-    
+  
     
     <div class="contacto__container">
       <form action="{% url 'secciones' 'contacto' %}" method="POST">
@@ -230,14 +234,3 @@
   </section>
 
 {% endblock contenido %}
-
-  <!-- Icono flotante de whatsapp -->
-  <div id="whatsapp">
-    <a href="#"><img src="{% static "ecommerce/icons/whatsapp.png" %}" alt="icono de whatsapp"></a>
-  </div>
-  <script src="{% static "ecommerce/js/index.js" %}"></script>
-  <script src="{% static "ecommerce/consumo_api.js" %}"></script>
-  <script src="https://kit.fontawesome.com/23b68efae4.js" crossorigin="anonymous"></script>
-</body>
-
-</html>

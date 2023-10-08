@@ -19,8 +19,8 @@ from . import views
 
 urlpatterns = [
     # path('admin/', admin.site.urls),
-    path('',views.index, name="index"),
-    path('/#<str:seccion>',views.secciones, name="secciones"),
+    path('',views.secciones, name="secciones"),
+    path('<str:seccion>/',views.secciones, name="secciones"),
     path('productos/', views.productos, name="productos"),
     #ruta parametrizada, ingresamos a cada categoria de productos
     path('productos/<str:categoria>/', views.producto_categoria, name="productos_categoria"),
