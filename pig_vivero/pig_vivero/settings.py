@@ -74,7 +74,7 @@ WSGI_APPLICATION = 'pig_vivero.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = {
+""" DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'HOST': "localhost",
@@ -84,7 +84,7 @@ DATABASES = {
         'PASSWORD': 'postgresqlpass'
     }
 }
-
+ """
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators

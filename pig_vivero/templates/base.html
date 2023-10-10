@@ -17,7 +17,6 @@
 <body>
 <!--Seccion Header-->
 <header class="header">
-
     <nav class="navegacion">
       <div class="navegacion__logo">
         <a href="#portada">
@@ -121,11 +120,10 @@
   <div id="whatsapp">
     <a href="#"><img src="{% static "ecommerce/icons/whatsapp.png" %}" alt="icono de whatsapp"></a>
   </div>
-  {% comment %} <script src="{% static "ecommerce/js/index.js" %}"></script> {% endcomment %}
-  {% comment %} <script src="{% static "ecommerce/consumo_api.js" %}"></script> {% endcomment %}
+  <script src="{% static "ecommerce/js/index.js" %}"></script>
+  <script src="{% static "ecommerce/consumo_api.js" %}"></script>
   {% if seccion %}
     <script>
-      console.log("Seccion: {{ seccion }}")
       document.getElementById('{{ seccion }}').scrollIntoView();
     </script>
   {% endif %}
