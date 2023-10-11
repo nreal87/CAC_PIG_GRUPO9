@@ -2,7 +2,16 @@
 {% load static %}
 
 <!-- Seccion portada -->
-{% block contenido %}
+  {% block contenido %}
+  <div>
+    {% if messages %}
+      {% for message in messages %}
+        {% if message.tags == 'success' %}
+          <div> {{ message }} </div>
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+  </div>
   <section id="portada">
 
     <div class="slider">
@@ -203,18 +212,17 @@
 
   <!-- Seccion contacto -->
   <section id="contacto">
+    <div>
+      {% if messages %}
+        {% for message in messages %}
+          {% if message.tags == 'error' %}
+              <div> {{ message }} </div>
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+    </div>
     <h2 class="contacto__titulo"> CONTACTANOS </h2>
-    {% if messages %}
-      {% for message in messages %}
-        {% if message.tags == 'success' %}
-          <div> {{ message }} </div>
-        {% elif message.tags == 'error' %}
-            <div> {{ message }} </div>
-        {% endif %}
-      {% endfor %}
-    {% endif %}
-  
-    
+           
     <div class="contacto__container">
       <form action="{% url 'secciones' 'contacto' %}" method="POST">
         {% csrf_token %}

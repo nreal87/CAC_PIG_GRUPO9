@@ -38,8 +38,10 @@ def secciones(request, seccion = ''):
                 #Si el formulario pasa las validaciones lo procesamos acá
                 #enviamos mensaje formulario correcto
                 messages.success(request, 'Su consulta se proceso correctamente.')
+                seccion=''
+                formulario_contacto = ContactoForm()
             else:
-                messages.error(request, 'Su consulta No se pudo procesar.')
+                messages.error(request, 'Su consulta NO se pudo procesar. Completala otra vez.')
 
     context = { "seccion": seccion,
                 "ahora": datetime.now,
