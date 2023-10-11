@@ -11,7 +11,13 @@ def validar_nombre(nombre):
 
 
 class ContactoForm(forms.Form):
-
+    SUCURSALES = (('', 'Seleccione Sucursal'),
+                  ('1', 'Córdoba'),
+                  ('2', 'Buenos Aires'),
+                  ('3', 'Mendoza'),
+                  ('4', 'Rosario'),
+                  ('5', 'CABA') )
+    
     nombre = forms.CharField(label="Nombre",
                              max_length=50,
                              required=True,
@@ -22,11 +28,13 @@ class ContactoForm(forms.Form):
                              widget=forms.TextInput(attrs={'placeholder': 'ejemplo@dominio.com'}),
                              required=True)
     
-    provincia = forms.ChoiceField(
-                            label='Provincia',
-                            widget=forms.Select(attrs={'id': 'provincia'}),
-                            required=False)
-    
+    sucursal = forms.ChoiceField(
+        label='Sucursal',
+        choices=SUCURSALES,
+        widget=forms.Select(attrs={'id': 'sucursal'}),
+        required=False
+        )
+     
     consulta = forms.CharField(label = "Mensaje",
                                max_length=250,
                                widget=forms.Textarea(attrs={'placeholder': 'Ingrese su consulta.'}),
