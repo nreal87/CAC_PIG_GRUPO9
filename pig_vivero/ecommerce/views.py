@@ -45,7 +45,8 @@ def secciones(request, seccion = ''):
 
     context = { "seccion": seccion,
                 "ahora": datetime.now,
-                "formulario_contacto": formulario_contacto}
+                "formulario_contacto": formulario_contacto,
+                "productos_index" : __buscar_productos(),}
     return render(request, "index.html", context)
     
 

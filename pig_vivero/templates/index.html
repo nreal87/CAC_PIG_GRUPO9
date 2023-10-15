@@ -46,87 +46,17 @@
 
     <div class="grid-container">
 
-      <div class=grid-item>
-        <img src="{% static "ecommerce/images/lirio_rojo.jpg" %}" alt="imagen de un lirio color rojo." class="image-item" id="item1">
-        <div class="card-info">
-          <h4 class="card-title">Lirio Rojo.</h4>
-          <p class="card-text">Simbolismo: Amor y Seducción.</p>
-          <a href="{% url 'productos_categoria' 'lirio' %}"><button class="btn-item">IR A COMPRAR</button></a>
+      {% for producto in productos_index %}
+        <div class=grid-item>
+          <img src={{producto.imagen}} alt="" class="image-item" >
+          <div class="card-info">
+            <h4 class="card-title"> {{producto.nombre | upper}} </h4>
+            <p class="card-text">{{producto.descripcion}}</p>
+            <a href="{% url 'productos_categoria' 'lirio' %}"><button class="btn-item">IR A COMPRAR</button></a>
+          </div>
         </div>
-      </div>
-
-      <div class=grid-item>
-        <img src="{% static "ecommerce/images/lirio_blanco.jpg" %}" alt="imagen de un lirio color blanco" class="image-item" id="item2">
-        <div class="card-info">
-          <h4 class="card-title">Lirio Blanco.</h4>
-          <p class="card-text">Simbolismo: Pureza y Belleza.</p>
-          <a href="{% url 'productos_categoria' 'lirio' %}"><button class="btn-item">IR A COMPRAR</button></a>
-        </div>
-      </div>
-
-      <div class=grid-item>
-        <img src="{% static "ecommerce/images/lirio_naranja.jpg" %}" alt="imagen de un lirio naranja" class="image-item" id="item3">
-        <div class="card-info">
-          <h4 class="card-title">Lirio Naranja.</h4>
-          <p class="card-text">Simbolismo: Pasión.</p>
-          <a href="{% url 'productos_categoria' 'lirio' %}"><button class="btn-item">IR A COMPRAR</button></a>
-        </div>
-      </div>
-
-      <div class=grid-item>
-        <img src="{% static "ecommerce/images/frutales_rojo.jpg" %}" alt="imagen de arbol frutal" class="image-item" id="item4">
-        <div class="card-info">
-          <h4 class="card-title">Árboles frutales.</h4>
-          <p class="card-text">Consultar según la temporada.</p>
-          <a href="{% url 'productos_categoria' 'frutales' %}"><button class="btn-item">IR A COMPRAR</button></a>
-        </div>
-      </div>
-
-      <div class=grid-item>
-        <img src="{% static "ecommerce/images/cactus_verde.jpg" %}" alt="imagen de cactus." class="image-item" id="item5">
-        <div class="card-info">
-          <h4 class="card-title">Cactus.</h4>
-          <p class="card-text">Fuentes de éxito personal y laboral.</p>
-          <a href="{% url 'productos_categoria' 'cactus' %}"><button class="btn-item">IR A COMPRAR</button></a>
-        </div>
-      </div>
-
-      <div class=grid-item>
-        <img src="{% static "ecommerce/images/gromineas1.jpg" %}" alt="imagen de gromíneas" class="image-item" id="item6">
-        <div class="card-info">
-          <h4 class="card-title">Gromíneas.</h4>
-          <p class="card-text">Plantita espetacular para decorar</p>
-          <a href="{% url 'productos_categoria' 'gromineas' %}"><button class="btn-item">IR A COMPRAR</button></a>
-        </div>
-      </div>
-
-      <div class=grid-item>
-        <img src="{% static "ecommerce/images/fuente_jardin.jpg" %}" alt="imagen de fuentes de jardin" class="image-item" id="item7">
-        <div class="card-info">
-          <h4 class="card-title">Fuentes de Jardín</h4>
-          <p class="card-text">Contamos con distintos modelos.</p>
-          <a href="{% url 'productos_categoria' 'fuentes' %}"><button class="btn-item">IR A COMPRAR</button></a>
-        </div>
-      </div>
-
-      <div class=grid-item>
-        <img src="{% static "ecommerce/images/maceta_roja.jpg" %}" alt="imagen de maceta roja." class="image-item" id="item8">
-        <div class="card-info">
-          <h4 class="card-title">Macetas</h4>
-          <p class="card-text">Variedad en colores y modelos.</p>
-          <a href="{% url 'productos_categoria' 'macetas' %}"><button class="btn-item">IR A COMPRAR</button></a>
-        </div>
-      </div>
-
-      <div class=grid-item>
-        <img src="{% static "ecommerce/images/herramientas.jpg" %}" alt="imagen de herramientas de jardineria." class="image-item"
-          id="item9">
-        <div class="card-info">
-          <h4 class="card-title">Herramientas.</h4>
-          <p class="card-text">Palas, regaderas, mangueras y mas.</p>
-          <a href="{% url 'productos_categoria' 'herramientas' %}"><button class="btn-item">IR A COMPRAR</button></a>
-        </div>
-      </div>
+      {% endfor %}
+      
     </div>
   </section>
 
