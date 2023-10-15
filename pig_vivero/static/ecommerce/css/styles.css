@@ -520,6 +520,10 @@ section {
   width: 50%;
   border-radius: 12px;
 }
+.errorlist{
+  background-color: yellow;
+  margin-top: 0.5rem;
+}  
 
 .btn-item:hover,
 button:hover,
@@ -726,3 +730,16 @@ ul{
 }
 }
 
+.mensaje__error{
+  background-color:  red;
+  color: yellow;
+  font-size: x-large;
+  padding: .4rem;
+}
+
+.mensaje__ok{
+  background-color:  greenyellow;
+  color: rgb(7, 7, 7);
+  font-size: x-large;
+  padding: .4rem;
+}

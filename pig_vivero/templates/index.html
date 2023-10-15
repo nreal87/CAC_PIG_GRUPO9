@@ -3,16 +3,16 @@
 
 <!-- Seccion portada -->
   {% block contenido %}
-  <div>
+
     {% if messages %}
       {% for message in messages %}
         {% if message.tags == 'success' %}
-          <div> {{ message }} </div>
+        <div class="mensaje__ok"> {{ message }} </div>
         {% endif %}
       {% endfor %}
     {% endif %}
-  </div>
-  <section id="portada">
+
+    <section id="portada">
 
     <div class="slider">
       <ul>
@@ -142,21 +142,31 @@
 
   <!-- Seccion contacto -->
   <section id="contacto">
-    <div>
-      {% if messages %}
-        {% for message in messages %}
-          {% if message.tags == 'error' %}
-              <div> {{ message }} </div>
-          {% endif %}
-        {% endfor %}
-      {% endif %}
-    </div>
+   
+    {% if messages %}
+      {% for message in messages %}
+        {% if message.tags == 'error' %}
+          <div class="mensaje__error"> {{ message }} </div>
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+    
     <h2 class="contacto__titulo"> CONTACTANOS </h2>
            
     <div class="contacto__container">
       <form action="{% url 'secciones' 'contacto' %}" method="POST">
         {% csrf_token %}
-        {{formulario_contacto}}
+        {% comment %} {{formulario_contacto}} {% endcomment %}
+        {% for campo in formulario_contacto %}
+        
+        
+                <label for="name">{{ campo.label }}</label>
+                {{campo}}
+                
+            <div class="error">{{campo.errors}}</div>
+        
+        <!--Grid column-->
+    {% endfor %}
         <button id="submit" type="submit">ENVIAR</button>
       </form>
      
