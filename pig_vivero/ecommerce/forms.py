@@ -6,8 +6,8 @@ def validar_nombre(nombre):
     for caracter in nombre:
         if not caracter.isalpha():
             raise ValidationError('ERROR. El nombre solo debe tener letras.',
-                                code='Error',
-                                params={'nombre': nombre})
+                                  code='Error',
+                                  params={'nombre': nombre})
 
 
 class ContactoForm(forms.Form):
@@ -25,7 +25,7 @@ class ContactoForm(forms.Form):
                              )    
     
     email = forms.EmailField(label="Email", max_length=70,
-                             widget=forms.TextInput(attrs={'placeholder': 'ejemplo@dominio.com'}),
+                             widget=forms.TextInput(attrs={'placeholder': 'ejemplo@dominio.com',}),
                              required=True)
     
     sucursal = forms.ChoiceField(

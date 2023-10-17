@@ -1,17 +1,21 @@
 {% extends "base.html" %}
 {% load static %}
 
-<!-- Seccion portada -->
-{% block contenido %}
 
+{% block contenido %}
+    <!-- Mensaje que se muestra cuando el formulario se proceso correctamente -->
     {% if messages %}
       {% for message in messages %}
         {% if message.tags == 'success' %}
-        <div class="mensaje__ok"> {{ message }} </div>
+        {% comment %} <div class="mensaje__ok"> {{ message }} </div> {% endcomment %}
+          <div class="alert alert-success alert-dismissible">
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            {{ message }}
+          </div>
         {% endif %}
       {% endfor %}
     {% endif %}
-
+  <!-- Seccion portada -->
   <section id="portada">
 
     <div class="slider">
@@ -53,7 +57,7 @@
           <div class="card_info">
             <h4 class="card_title"> {{producto.nombre | upper}} </h4>
             <p class="card_text">{{producto.descripcion}}</p>
-            <a href="{% url 'productos_categoria' 'lirio' %}"><button class="btn_item">IR A COMPRAR</button></a>
+            <a href="{% url 'productos_categoria' producto.categoria %}"><button class="btn_item">IR A COMPRAR</button></a>
           </div>
         </div>
       {% endfor %}
@@ -86,7 +90,6 @@
 
   <!-- Seccion de servicios -->
   <section id="servicios">
-
     <div class="flex_elem_serv">
       <div>
         <h2 id="servicios_title">SERVICIOS</h2>
@@ -148,7 +151,11 @@
     {% if messages %}
       {% for message in messages %}
         {% if message.tags == 'error' %}
-          <div class="mensaje__error"> {{ message }} </div>
+          {% comment %} <div class="mensaje__error"> {{ message }} </div> {% endcomment %}
+          <div class="alert alert-danger alert-dismissible">
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            {{message}}
+          </div>
         {% endif %}
       {% endfor %}
     {% endif %}
@@ -165,7 +172,7 @@
                 <label for="name">{{ campo.label }}</label>
                 {{campo}}
                 
-            <div class="error">{{campo.errors}}</div>
+            <div>{{campo.errors}}</div>
         
         <!--Grid column-->
     {% endfor %}
