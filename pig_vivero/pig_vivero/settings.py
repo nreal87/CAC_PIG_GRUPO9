@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'pig_vivero.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'HOST': config('DATABASE_HOST','localhost'), 
         'PORT': config('DATABASE_PORT',5432),
         'NAME': config('DATABASE_NAME','postgresql_pig_grupo9_db'),
@@ -110,7 +110,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es-ar'
 
 TIME_ZONE = 'UTC'
 
