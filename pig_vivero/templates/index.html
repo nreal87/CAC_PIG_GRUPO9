@@ -2,7 +2,7 @@
 {% load static %}
 
 <!-- Seccion portada -->
-  {% block contenido %}
+{% block contenido %}
 
     {% if messages %}
       {% for message in messages %}
@@ -12,7 +12,7 @@
       {% endfor %}
     {% endif %}
 
-    <section id="portada">
+  <section id="portada">
 
     <div class="slider">
       <ul>
@@ -22,6 +22,7 @@
         <li><img src="{% static "ecommerce/images/carrusel3.jpg" %}" alt="jardin de lirios"></li>
       </ul>
     </div>
+   
     <div class="portada__box">
       <div class="portada__box-container">
         <h1>Vivero Los Lirios</h1>
@@ -39,20 +40,20 @@
 
   <!--Seccion Productos-->
 
-  <section id="productos" class="flex-productos-container">
+  <section id="productos" class="flex_productos_container">
     <div>
-      <h2 id="product-title">PRODUCTOS</h2>
+      <h2 id="product_title">PRODUCTOS</h2>
     </div>
 
-    <div class="grid-container">
+    <div class="grid_container">
 
       {% for producto in productos_index %}
-        <div class=grid-item>
-          <img src={{producto.imagen}} alt="" class="image-item" >
-          <div class="card-info">
-            <h4 class="card-title"> {{producto.nombre | upper}} </h4>
-            <p class="card-text">{{producto.descripcion}}</p>
-            <a href="{% url 'productos_categoria' 'lirio' %}"><button class="btn-item">IR A COMPRAR</button></a>
+        <div class="grid_item">
+          <img src={{producto.imagen}} alt="" class="image_item" >
+          <div class="card_info">
+            <h4 class="card_title"> {{producto.nombre | upper}} </h4>
+            <p class="card_text">{{producto.descripcion}}</p>
+            <a href="{% url 'productos_categoria' 'lirio' %}"><button class="btn_item">IR A COMPRAR</button></a>
           </div>
         </div>
       {% endfor %}
@@ -62,20 +63,20 @@
 
   <!-- seccion de informacion -->
   <section id="informacion">
-    <div class="info-container">
-      <div class="info-item">
+    <div class="info_container">
+      <div class="info_item">
         <img src="{% static "ecommerce/icons/001-nuevo.png" %}" alt="imagen de promocion.">
         <h3>No te pierdas nuestras promociones.</h3>
         <p>Seguinos.</p>
       </div>
 
-      <div class="info-item">
+      <div class="info_item">
         <img src="{% static "ecommerce/icons/002-cupn.png" %}" alt="imagen de tarjeta de regalo">
         <h3>Regala una Giftcard.</h3>
         <p>Podes realizar regalos por montos.</p>
       </div>
 
-      <div class="info-item">
+      <div class="info_item">
         <img src="{% static "ecommerce/icons/003-negro.png" %}" alt="imagen de forma de pago.">
         <h3>Pago Seguro</h3>
         <p>Realizá tu compra con tarjeta, transferencia o efectivo.</p>
@@ -86,37 +87,38 @@
   <!-- Seccion de servicios -->
   <section id="servicios">
 
-    <div class="flex-elem-serv">
+    <div class="flex_elem_serv">
       <div>
-        <h2 id="servicios-title">SERVICIOS</h2>
+        <h2 id="servicios_title">SERVICIOS</h2>
       </div>
 
-      <div class="serv-flex-container">
+      <div class="serv_flex_container">
 
-        <div class="serv-flex-item">
-          <div class="card-info">
-            <h4 class="card-title-serv">Asesoramiento Profesional.</h4>
-            <p class="card-text-serv">Despejamos todas sus dudas al instante.</p>
+        <div class="serv_flex_item">
+          <div class="card_info">
+            <h4 class="card_title_serv">Asesoramiento Profesional.</h4>
+            <p class="card_text_serv">Despejamos todas sus dudas al instante.</p>
           </div>
-          <img class="image-serv" src="{% static "ecommerce/images/profesional1.jpg" %}" alt="imagen de un profesional botánico.">
+          <img class="image_serv" src="{% static "ecommerce/images/profesional1.jpg" %}" 
+               alt="imagen de un profesional botánico.">
         </div>
 
-        <div class="serv-flex-item">
-          <div class="card-info">
-            <h4 class="card-title-serv">Diseño y ejecucion de<br>parques y jardines.</h4>
-            <p class="card-text-serv">Contamos con especialistas en paisajismo.</p>
+        <div class="serv_flex_item">
+          <div class="card_info">
+            <h4 class="card_title_serv">Diseño y ejecucion de<br>parques y jardines.</h4>
+            <p class="card_text_serv">Contamos con especialistas en paisajismo.</p>
           </div>
-          <img class="image-serv" src="{% static "ecommerce/images/servicio_jardineria.jpg" %}"
-            alt="imagen de un paisajista trabajando.">
+          <img class="image_serv" src="{% static "ecommerce/images/servicio_jardineria.jpg" %}"
+               alt="imagen de un paisajista trabajando.">
         </div>
 
-        <div class="serv-flex-item">
-          <div class="card-info">
-            <h4 class="card-title-serv">Envios a Domicilio.</h4>
-            <p class="card-text-serv">Consulte precios por envios a domicilio.</p>
+        <div class="serv_flex_item">
+          <div class="card_info">
+            <h4 class="card_title_serv">Envios a Domicilio.</h4>
+            <p class="card_text_serv">Consulte precios por envios a domicilio.</p>
           </div>
-          <img class="image-serv" src="{% static "ecommerce/images/entrega.jpg" %}"
-            alt="imagen de hombre haciendo entrega a domicilio.">
+          <img class="image_serv" src="{% static "ecommerce/images/entrega.jpg" %}"
+               alt="imagen de hombre haciendo entrega a domicilio.">
         </div>
       </div>
     </div>

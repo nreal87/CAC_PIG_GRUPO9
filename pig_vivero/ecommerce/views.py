@@ -7,6 +7,10 @@ from django.core.exceptions import ValidationError
 from django.contrib import messages
 
 
+def __buscar_categorias():
+
+    categorias = ["lirio", "frutales","gromineas","herramientas", "macetas", "fuentes", "cactus"]
+    return categorias
 
 def __buscar_productos(cat = "todas"):
 
@@ -53,14 +57,17 @@ def secciones(request, seccion = ''):
 def productos(request):
 
     context = {"ahora":datetime.now,
-               "productos":__buscar_productos()}
+               "productos": __buscar_productos()
+              }
     return render(request,"productos.html", context)
 
 
 def producto_categoria(request, categoria):
 
     context = {"ahora":datetime.now,
-               "productos":__buscar_productos(categoria)}
+               "productos":__buscar_productos(categoria),
+               "categorias": __buscar_categorias(),
+               "activo": categoria,}
     return render(request, "productos.html", context)
 
 

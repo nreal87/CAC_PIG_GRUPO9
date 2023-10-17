@@ -1,67 +1,53 @@
 {% extends "base.html" %}
 {% load static %}
 {% block titulo %}-Productos{% endblock titulo %}-Productos
+
 {% block contenido%}
-
-  {% comment %} <div id="formulario">
-    <input type="text" id="codigo" placeholder="Código">
-    <input type="text" id="nombre" placeholder="Nombre">
-    <input type="text" id="descripcion" placeholder="Descripción">
-    <input type="text" id="precio" placeholder="Precio">
-    <input type="text" id="stock" placeholder="Stock">
-    <input type="text" id="categoria" placeholder="Categoría">
-    <input type="text" id="imagen" placeholder="URL de la imagen">
-    <button id="btnAgregar">Agregar</button>
-  </div> {% endcomment %}
-
-  <table id="productosTable">
-    <thead>
-      <tr>
-        <th>Código</th>
-        <th>Nombre</th>
-        <th>Descripción</th>
-        <th>Precio</th>
-        <th>Stock</th>
-        <th>Categoría</th>
-        <th>Imagen</th>
-        <th>Acciones</th>
-      </tr>
-    </thead>
-    <tbody id="productosBody">
-      {% for producto in productos  %}
-      <tr>  
-        <td>
-            {{producto.codigo}}
-        </td>
-        <td>
-          {{producto.nombre}}
-      </td>
-        <td>
-          {{producto.descripcion}}
-        </td>
-        <td>
-          {{producto.precio}}
-        </td>
-        <td>
-          {{producto.stock}}
-      </td>
-      <td>
-        {{producto.stock}}
-      </td>
-      <td >
-        <img style = "width: 100px;" src= {{producto.imagen}}> 
-      </td>
-      </tr>  
-      {% endfor %}
-    </tbody>
-  </table>
-
+  
+  <div class="container mt-5">
+    <div class="row">
+      {% comment %} generamos la barra de navegacion lateral {% endcomment %}
+      <div class="col-sm-3">
+        <h3 class="mt-4">Productos:</h3>
+        <ul class="nav nav-pills flex-column">
+          {% for categoria in categorias %}
+            {% if categoria == activo %}
+              <li class="nav-item ">
+                <a class="nav-link active" href="{% url 'productos_categoria' categoria %}"> {{categoria}} </a>
+              </li>
+            {% else %}
+              <li class="nav-item ">
+                <a class="nav-link" href="{% url 'productos_categoria' categoria %}"> {{categoria}} </a>
+              </li>
+            {% endif %}
+            
+          {% endfor %}
+        </ul>
+        <hr class="d-sm-none">
+      </div>
+      
+      {% comment %} generamos la tabla con el listado de los productos {% endcomment %}
+      <div class="col-sm-8">
+        <table class="table">
+          <tbody>
+            {% for producto in productos %}
+              <tr>
+                <td>
+                  <div class="col-sm-4 "><div class="card" style="width:400px">
+                    <div class="card-body">
+                      <h4 class="card-title">{{producto.nombre}}</h4>
+                      <p class="card-text"> {{producto.descripcion}} </p>
+                      <a href="#" class="btn btn-primary">Comprar</a>
+                    </div>
+                    <img class="card-img-bottom" src={{producto.imagen}} alt="Card image" style="width:100%">
+                  </div>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
-  {% if categoria %}
-    <h3>Entraste pidiendo la categoría {{categoria}}</h3>
-  {% else %}
-    <h3>Entraste para ver todos los productos </h3>
-  {% endif %}
-  <script src="{% static "ecommerce/js/script_back.js" %}"></script>
-
+  
 {% endblock contenido%}
