@@ -1,108 +1,78 @@
 {% extends "base.html" %}
 {% load static %}
 {% block titulo %}-Productos{% endblock titulo %}-Productos
+
 {% block contenido%}
+  
+  <div class="container mt-5">
+    <div class="row">
+      {% comment %} generamos la barra de navegacion lateral {% endcomment %}
+      <div class="col-sm-3">
+        <h3 class="mt-4">Productos:</h3>
+        <ul class="nav nav-pills flex-column">
+          {% for categoria in categorias %}
+            {% if categoria == activo %}
+              <li class="nav-item ">
+                <a class="nav-link active" href="{% url 'productos_categoria' categoria %}"> {{categoria}} </a>
+              </li>
+            {% else %}
+              <li class="nav-item ">
+                <a class="nav-link" href="{% url 'productos_categoria' categoria %}"> {{categoria}} </a>
+              </li>
+            {% endif %}
+            
+          {% endfor %}
+        </ul>
+        <hr class="d-sm-none">
+      </div>
+      
+      {% comment %} generamos la tabla con el listado de los productos {% endcomment %}
+      {% comment %} <div class="col-sm-8">
+        <table class="table">
+          <tbody>
+            {% for producto in productos %}
+              <tr>
+                <td>
+                  <div class="col-sm-4 "><div class="card" style="width:400px">
+                    <div class="card-body">
+                      <h4 class="card-title">{{producto.nombre}}</h4>
+                      <p class="card-text"> {{producto.descripcion}} </p>
+                      <a href="#" class="btn btn-primary">Comprar</a>
+                    </div>
+                    <img class="card-img-bottom" src={{producto.imagen}} alt="Card image" style="width:100%">
+                  </div>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div> {% endcomment %}
+      <div class="col-sm-8">
+        <div class="row">
+          {% for un_producto in productos %}
+            <div class="col-md-4">
+              <div class="card mb-4 box-shadow">
+                <img class="card-img-top" data-src= alt="imagen del producto" style="height: 225px; width: 100%; display: block;" src={{un_producto.imagen}} data-holder-rendered="true">
+                <div class="card-body">
+                  <p class="card-text">{{un_producto.descripcion}}</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary">Comprar</button>
+                      {% comment %} <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> {% endcomment %}
+                    </div>
+                    <small class="text-muted">{{un_producto.precio}}</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
 
-  {% comment %} <div id="formulario">
-    <input type="text" id="codigo" placeholder="Código">
-    <input type="text" id="nombre" placeholder="Nombre">
-    <input type="text" id="descripcion" placeholder="Descripción">
-    <input type="text" id="precio" placeholder="Precio">
-    <input type="text" id="stock" placeholder="Stock">
-    <input type="text" id="categoria" placeholder="Categoría">
-    <input type="text" id="imagen" placeholder="URL de la imagen">
-    <button id="btnAgregar">Agregar</button>
-  </div> {% endcomment %}
-
-  <table id="productosTable">
-    <thead>
-      <tr>
-        <th>Código</th>
-        <th>Nombre</th>
-        <th>Descripción</th>
-        <th>Precio</th>
-        <th>Stock</th>
-        <th>Categoría</th>
-        <th>Imagen</th>
-        <th>Acciones</th>
-      </tr>
-    </thead>
-    <tbody id="productosBody">
-      {% for producto in productos  %}
-      <tr>  
-        <td>
-            {{producto.codigo}}
-        </td>
-        <td>
-          {{producto.nombre}}
-      </td>
-        <td>
-          {{producto.descripcion}}
-        </td>
-        <td>
-          {{producto.precio}}
-        </td>
-        <td>
-          {{producto.stock}}
-      </td>
-      <td>
-        {{producto.stock}}
-      </td>
-      <td >
-        <img style = "width: 100px;" src= {{producto.imagen}}> 
-      </td>
-      </tr>  
-      {% endfor %}
-    </tbody>
-  </table>
-
-  {% comment %} <div id="ventanaEmergente" class="ventana-emergente">
-
-    <div id="formularioEditar" style="display: none;">
-      <h2>Editar Producto</h2>
-      <form>
-        <label for="codigoEditar">Código:</label>
-        <input type="text" id="codigoEditar" disabled>
-        <br>
-        <label for="nombreEditar">Nombre:</label>
-        <input type="text" id="nombreEditar">
-        <br>
-        <label for="descripcionEditar">Descripción:</label>
-        <input type="text" id="descripcionEditar">
-        <br>
-        <label for="precioEditar">Precio:</label>
-        <input type="text" id="precioEditar">
-        <br>
-        <label for="stockEditar">Stock:</label>
-        <input type="text" id="stockEditar">
-        <br>
-        <!-- <label for="categoriaEditar">Categoría:</label>
-      <input type="text" id="categoriaEditar"> -->
-        <label for="categoriaEditar">Categoría:</label>
-        <select id="categoriaEditar" name="categoria">
-          <option value="lirios">lirios</option>
-          <option value="herramientas">herramientas</option>
-          <option value="gromineas">gromineas</option>
-          <option value="macetas">macetas</option>
-          <option value="frutales">frutales</option>
-          <option value="fuentes">fuentes</option>
-        </select>
-        <br>
-        <label for="imagenEditar">Imagen:</label>
-        <input type="text" id="imagenEditar">
-        <br>
-        <button type="button" id="btnActualizar">Actualizar</button>
-        <button type="button" id="btnCancelar">Cancelar</button>
-        <button type="button" id="btnCerrar">Cerrar</button>
-      </form>
-    </div> {% endcomment %}
-
+        </div>
+      </div>
+      
+    </div>
   </div>
-  {% if categoria %}
-    <h3>Entraste pidiendo la categoría {{categoria}}</h3>
-  {% else %}
-    <h3>Entraste para ver todos los productos </h3>
-  {% endif %}
-  <script src="{% static "ecommerce/js/script_back.js" %}"></script>
-
+  
 {% endblock contenido%}
+
+

@@ -250,14 +250,14 @@ section {
 }
 
 /* PRODUCTOS */
-.flex-productos-container {
+.flex_productos_container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   margin: 3.125rem 9.375rem;
 }
 
-.grid-container {
+.grid_container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 360px));
   justify-content: space-between;
@@ -266,14 +266,14 @@ section {
   margin: 5rem 2rem;
 }
 
-#product-title {
+#product_title {
   grid-column: 1 / 4;
   font-family: "Roboto", regular;
   font-size: 2rem;
   text-align: justify;
 }
 
-.grid-item {
+.grid_item {
   background-color: var(--secondaryColor);
   box-shadow: 0 4px 8px 0 rgba(100, 12, 12, 0.432);
   border-radius: 10px;
@@ -281,20 +281,20 @@ section {
   height: 375px;
 }
 
-.grid-item:hover {
+.grid_item:hover {
   box-shadow: 0 8px 16px 0 rgba(97, 11, 11, 0.733);
   transform: scale(1.1);
   transition: all ease-in 0.3s;
 }
 
-.image-item {
+.image_item {
   display: block;
   width: 100%;
   height: 70%;
   border-radius: 10px 10px 0px 0px;
 }
 
-.card-info {
+.card_info {
   width: 100%;
   height: 30%;
   padding: 8px 12px;
@@ -304,19 +304,21 @@ section {
   justify-content: space-between;
 }
 
-.card-title {
+.card_title {
   font-family: "Roboto", bold;
   font-size: 1.25rem;
   color: var(--cardTitle);
+  margin-bottom: 0.1rem;
 }
 
-.card-text {
+.card_text {
   font-family: "Roboto", regular;
   font-size: 1rem;
   color: var(--cardText);
+  margin-bottom: 0.1rem;
 }
 
-.btn-item {
+.btn_item {
   width: 100%;
   text-align: center;
   background-color: var(--accentColor);
@@ -330,20 +332,20 @@ section {
 }
 
 /*SERVICIOS*/
-#servicios-title {
+#servicios_title {
   font-family: "Roboto", regular;
   font-size: 2rem;
   text-align: justify;
   margin-bottom: 50px;
 }
 
-.flex-elem-serv {
+.flex_elem_serv {
   display: flex;
   flex-direction: column;
   /*   margin: 3.125rem 9.375rem; */
 }
 
-.serv-flex-container {
+.serv_flex_container {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -352,7 +354,7 @@ section {
   margin: 1rem;
 }
 
-.serv-flex-item {
+.serv_flex_item {
   background-color: var(--secondaryColor);
   box-shadow: 0 4px 8px 0 rgba(100, 12, 12, 0.432);
   border-radius: 12px;
@@ -362,7 +364,7 @@ section {
   padding-top: 1rem;
   overflow: hidden;
 }
-.card-title-serv {
+.card_title_serv {
   color: var(--accentColor);
   font-family: "Roboto", bold;
   /* font-size: 20px; */
@@ -370,14 +372,14 @@ section {
   margin-bottom: 0.313rem;
   text-align: center;
 }
-.card-text-serv {
+.card_text_serv {
   text-align: center;
   font-family: "Roboto", regular;
   font-size: 1rem;
   color: var(--cardText);
 }
 
-.image-serv {
+.image_serv {
   display: block;
   width: 100%;
   height: 200px;
@@ -432,24 +434,24 @@ section {
   margin-top: 1.25rem;
   margin-bottom: 4, 688rem;
 }
-.info-container {
+.info_container {
   display: flex;
   justify-content: space-evenly;
 }
 
-.info-item {
+.info_item {
   width: fit-content;
   text-align: center;
 }
-.info-item > h3 {
+.info_item > h3 {
   color: cadetblue;
   font-size: large;
 }
-.info-item > p {
+.info_item > p {
   font-size: small;
   color: darkgray;
 }
-.info-item > img {
+.info_item > img {
   height: 6.25rem;
 }
 
@@ -520,8 +522,12 @@ section {
   width: 50%;
   border-radius: 12px;
 }
+.errorlist{
+  background-color: yellow;
+  margin-top: 0.5rem;
+}  
 
-.btn-item:hover,
+.btn_item:hover,
 button:hover,
 form button:hover {
   background-color: var(--cardText);
@@ -534,12 +540,12 @@ form button:hover {
   display: none;
 }
 
-.container{
+.footer_container{
   max-width: 1170px;
   background-color: #891D44;
   margin: auto;
 }
-.row{
+.footer_row{
   display: flex;
   flex-wrap: wrap;
 }
@@ -547,7 +553,7 @@ ul{
   list-style: none;
 }
 
-.footer{
+.footer_base{
   background-color: #891D44;
   padding: 30px 0;
   /* position: fixed; */
@@ -556,12 +562,12 @@ ul{
   width: 100%;
 }
 
-.footer-col{
+.footer_col{
   width: 25%;
   padding: 0 15px;
 }
 
-.footer-col h4{
+.footer_col h4{
   font-size: 20px;
   color: white;
   text-transform: capitalize;
@@ -570,7 +576,7 @@ ul{
   position: relative;
 }
 
-.footer-col h4::before{
+.footer_col h4::before{
   content: "";
   position: absolute;
   left: 0;
@@ -581,11 +587,11 @@ ul{
   
 }
 
-.footer-col ul li:not(:last-child){
+.footer_col ul li:not(:last-child){
   margin-bottom: 10px;
 }
 
-.footer ul li a{
+.footer_base ul li a{
   text-decoration: none;
   font-weight: 300;
   color: #F1FFE7;
@@ -593,12 +599,12 @@ ul{
   transition: all 0.3s ease;
 }
 
-.footer-col ul li a:hover{
+.footer_col ul li a:hover{
   color: black;
   padding-left: 5px;
 }
 
-.footer-col .redes-sociales a{
+.footer_col .redes_sociales a{
   display: inline-block;
   height: 40px;
   width: 40px;
@@ -612,7 +618,7 @@ ul{
 
 }
 
-.footer-col .redes-sociales a:hover{
+.footer_col .redes_sociales a:hover{
   color:black;
   background-color: #ffffff;
 }
@@ -632,7 +638,7 @@ ul{
   html {
     font-size: 14px;
   }
-  .grid-container {
+  .grid_container {
     justify-content: center;
     align-items: center;
   }
@@ -647,7 +653,7 @@ ul{
   .contacto__container form {
     width: 80%;
   }
-  .footer-col{
+  .footer_col{
     width: 35%;
     margin-bottom: 30px;
 }
@@ -721,8 +727,25 @@ ul{
   #informacion {
     visibility: hidden;
   }
-  .footer-col{
+  .footer_col{
     width: 100%;
 }
 }
 
+.mensaje__error{
+  background-color:  red;
+  color: yellow;
+  font-size: x-large;
+  padding: .4rem;
+}
+
+.mensaje__ok{
+  background-color:  greenyellow;
+  color: rgb(7, 7, 7);
+  font-size: x-large;
+  padding: .4rem;
+}
+
+.date{
+  color: white;
+}
