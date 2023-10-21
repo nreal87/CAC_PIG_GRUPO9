@@ -3,15 +3,28 @@ from django.db import models
 # Create your models here.
 
 # -------------------------------------------------------------------
+# Clase "Cliente"
+# -------------------------------------------------------------------
+class Cliente(models.Model):
+    numero_de_cliente = models.IntegerField(verbose_name="numero de cliente")
+    nombre = models.CharField(verbose_name="nombre", max_length=250)
+    apellido = models.CharField(verbose_name="apellido", max_length=250)
+
+# -------------------------------------------------------------------
 # Clase "Producto"
 # -------------------------------------------------------------------
 class Producto(models.Model):
-    # Definimos el constructor e inicializamos los atributos de instancia
-    def __init__(self, codigo, descripcion, cantidad, precio):
-        self.codigo = codigo           # Código 
-        self.descripcion = descripcion # Descripción
-        self.cantidad = cantidad       # Cantidad disponible (stock)
-        self.precio = precio           # Precio 
+    codigo = models.IntegerField(verbose_name="codigo del producto")
+    descripcion = models.CharField(verbose_name="descripcion del producto", max_length=250)
+    cantidad = models.IntegerField(verbose_name="cantidad en stock")
+    precio = models.FloatField(verbose_name="precio del producto")
+
+    # # Definimos el constructor e inicializamos los atributos de instancia
+    # def __init__(self, codigo, descripcion, cantidad, precio):
+    #     self.codigo = codigo           # Código 
+    #     self.descripcion = descripcion # Descripción
+    #     self.cantidad = cantidad       # Cantidad disponible (stock)
+    #     self.precio = precio           # Precio 
 
     # Este método permite modificar un producto.
     def modificar(self, nueva_descripcion, nueva_cantidad, nuevo_precio):
@@ -24,9 +37,13 @@ class Producto(models.Model):
 # Clase "Inventario"
 # -------------------------------------------------------------------
 class Inventario(models.Model):
-    def __init__(self):
-        self.conexion = get_db_connection()
-        self.cursor = self.conexion.cursor()
+    fecha_creacion = models.DateField(verbose_name="fecha de creacion del inventario")
+    fecha_modificacion = models.DateField(verbose_name="fecha de la ultima modificacion")
+    productos_stock = models.ManyToManyField(Producto)
+
+    # def __init__(self):
+    #     self.conexion = get_db_connection()
+    #     self.cursor = self.conexion.cursor()
 
     def agregar_producto(self, codigo, descripcion, cantidad, precio):
         producto_existente = self.consultar_producto(codigo)
@@ -81,10 +98,16 @@ class Inventario(models.Model):
 # Clase "Carrito"
 # -------------------------------------------------------------------
 class Carrito(models.Model):
-    def __init__(self):
-        self.conexion = get_db_connection()
-        self.cursor = self.conexion.cursor()
-        self.items = []
+    fecha_de_compra = models.DateField(verbose_name="fecha de compra")
+    monto_total = models.FloatField(verbose_name="monto total de la compra")
+    direccion_entrega = models.CharField(verbose_name="direccion de entrega", max_length=250)
+    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
+    productos_carrito = models.ManyToManyField(Producto)
+
+    # def __init__(self):
+    #     self.conexion = get_db_connection()
+    #     self.cursor = self.conexion.cursor()
+    #     self.items = []
     
     def agregar(self, codigo, cantidad, inventario):
         producto = inventario.consultar_producto(codigo)
