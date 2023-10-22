@@ -70,7 +70,7 @@ def producto_categoria(request, categoria):
 
 
 # En esta vista deberiamos manejar la visualizacion del carrito del usuario con los productos elegidos, cantidades, precios y total
-def ver_Carrito(request):
+def ver_carrito(request):
     context = {"ahora":datetime.now,
                "productos": __buscar_productos()
               }
@@ -78,7 +78,7 @@ def ver_Carrito(request):
 
 
 # En esta vista deberiamos manejar la validacion de la compra del carrito y mostrar un mensaje de exito o error en la operacion
-def comprar_Carrito(request):
+def comprar_carrito(request):
     context = {"ahora":datetime.now,
                "productos": __buscar_productos()
               }
