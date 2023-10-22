@@ -24,6 +24,8 @@ urlpatterns = [
     path('productos/', views.productos, name="productos"),
     #ruta parametrizada, ingresamos a cada categoria de productos
     path('productos/<str:categoria>/', views.producto_categoria, name="productos_categoria"),
+    path('ver_carrito/',views.ver_carrito, name="ver_carrito")
+    path('comprar_carrito/',views.comprar_carrito, name="comprar_carrito")
     #agrego ruta para login
     path('login/', views.login, name="login"),
 ]

@@ -47,7 +47,6 @@ def secciones(request, seccion = ''):
                 formulario_contacto = ContactoForm()
             else:
                 messages.error(request, 'Su consulta NO se pudo procesar. Completala otra vez.')
-
     context = { "seccion": seccion,
                 "ahora": datetime.now,
                 "formulario_contacto": formulario_contacto,
@@ -56,7 +55,6 @@ def secciones(request, seccion = ''):
     
 
 def productos(request):
-
     context = {"ahora":datetime.now,
                "productos": __buscar_productos()
               }
@@ -64,7 +62,6 @@ def productos(request):
 
 
 def producto_categoria(request, categoria):
-
     context = {"ahora":datetime.now,
                "productos":__buscar_productos(categoria),
                "categorias": __buscar_categorias(),
@@ -72,6 +69,23 @@ def producto_categoria(request, categoria):
     return render(request, "productos.html", context)
 
 
+# En esta vista deberiamos manejar la visualizacion del carrito del usuario con los productos elegidos, cantidades, precios y total
+def ver_Carrito(request):
+    context = {"ahora":datetime.now,
+               "productos": __buscar_productos()
+              }
+    return render(request,"carrito.html", context)
+
+
+# En esta vista deberiamos manejar la validacion de la compra del carrito y mostrar un mensaje de exito o error en la operacion
+def comprar_Carrito(request):
+    context = {"ahora":datetime.now,
+               "productos": __buscar_productos()
+              }
+    return render(request,"compra.html", context)
+
+
+# A implementar luego cuando veamos como lo resuelve Django
 def login(request):
 
     context = {"ahora":datetime.now}
