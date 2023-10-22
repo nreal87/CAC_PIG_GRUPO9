@@ -30,7 +30,7 @@ class Producto(models.Model):
     codigo = models.IntegerField(verbose_name="codigo del producto")
     nombre = models.CharField(verbose_name="nombre del producto",max_length=250)
     descripcion = models.CharField(verbose_name="descripcion del producto", max_length=250)
-    cantidad = models.IntegerField(verbose_name="cantidad en stock")
+    cantidad = models.IntegerField(verbose_name="cantidad en stock") # este parametro aca para mi esta mal
     precio = models.FloatField(verbose_name="precio del producto")
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
     imagen = models.ImageField(verbose_name="imagen del producto")
@@ -52,6 +52,7 @@ class Inventario(models.Model):
     fecha_creacion = models.DateField(verbose_name="fecha de creacion del inventario")
     fecha_modificacion = models.DateField(verbose_name="fecha de la ultima modificacion")
     productos_stock = models.ManyToManyField(Producto)
+    # items_inventario = models.ManyToManyField(ItemInventario) # Esta linea reemplazaria a la anterior
 
     
 # -------------------------------------------------------------------
@@ -63,3 +64,20 @@ class Carrito(models.Model):
     direccion_entrega = models.CharField(verbose_name="direccion de entrega", max_length=250)
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
     productos_carrito = models.ManyToManyField(Producto)
+    # items_carrito = models.ManyToManyField(ItemCarrito) # Esta linea reemplazaria a la anterior
+
+
+# -------------------------------------------------------------------
+# Clase "ItemInventario"
+# -------------------------------------------------------------------
+class ItemInventario(models.Model):
+    producto = models.ManyToManyField(Producto)
+    cantidad = models.IntegerField(verbose_name="cantidad de unidades del producto en inventario")
+
+
+# -------------------------------------------------------------------
+# Clase "ItemCarrito"
+# -------------------------------------------------------------------
+class ItemCarrito(models.Model):
+    producto = models.ManyToManyField(Producto)
+    cantidad = models.IntegerField(verbose_name="cantidad de unidades del producto en carrito")
