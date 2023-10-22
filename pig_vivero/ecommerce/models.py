@@ -71,7 +71,7 @@ class Carrito(models.Model):
 # Clase "ItemInventario"
 # -------------------------------------------------------------------
 class ItemInventario(models.Model):
-    producto = models.ManyToManyField(Producto)
+    producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
     cantidad = models.IntegerField(verbose_name="cantidad de unidades del producto en inventario")
 
 
@@ -79,5 +79,5 @@ class ItemInventario(models.Model):
 # Clase "ItemCarrito"
 # -------------------------------------------------------------------
 class ItemCarrito(models.Model):
-    producto = models.ManyToManyField(Producto)
+    producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
     cantidad = models.IntegerField(verbose_name="cantidad de unidades del producto en carrito")
