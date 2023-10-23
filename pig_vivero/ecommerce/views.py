@@ -30,7 +30,8 @@ def __buscar_productos(cat = "todas"):
         productos = Producto.objects.filter(categoria = cat)
     productos_lista = []
     for prod in productos:
-        productos_lista.append({"codigo":prod.codigo, "nombre":prod.nombre, "descripcion":prod.descripcion, "precio":prod.precio, "stock":prod.cantidad, "categoria":prod.categoria, "imagen":prod.imagen})
+        # productos_lista.append({"codigo":prod.codigo, "nombre":prod.nombre, "descripcion":prod.descripcion, "precio":prod.precio, "stock":prod.cantidad, "categoria":prod.categoria, "imagen":prod.imagen}) # Para que ande la imagen posiblemente haga falta otra dependencia
+        productos_lista.append({"codigo":prod.codigo, "nombre":prod.nombre, "descripcion":prod.descripcion, "precio":prod.precio, "stock":"1", "categoria":prod.categoria, "imagen": static('ecommerce/images/frutales_rojo.jpg')})
     return productos_lista
     
 
