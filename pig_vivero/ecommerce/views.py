@@ -92,3 +92,41 @@ def login(request):
     context = {"ahora":datetime.now}
     return render(request, "login.html", context)
 
+
+# Esta vista permite crear mas facil todas las instancias que deben existir en la db inicialmente
+def iniciar_db(request):
+    # Creacion de categorias
+    Categoria1 = Categoria(nombre="Lirio", descripcion="Categoria Lirio")
+    Categoria2 = Categoria(nombre="Frutales", descripcion="Categoria Frutales")
+    Categoria3 = Categoria(nombre="Cactus", descripcion="Categoria Cactus")
+    Categoria4 = Categoria(nombre="Gromineas", descripcion="Categoria Gromineas")
+    Categoria5 = Categoria(nombre="Fuentes", descripcion="Categoria Fuentes")
+    Categoria6 = Categoria(nombre="Macetas", descripcion="Categoria Macetas")
+    Categoria7 = Categoria(nombre="Herramientas", descripcion="Categoria Herramientas")
+    Categoria1.save()
+    Categoria2.save()
+    Categoria3.save()
+    Categoria4.save()
+    Categoria5.save()
+    Categoria6.save()
+    Categoria7.save()
+    # Creacion de productos
+    Producto1 = Producto(codigo="1lr", nombre="lirio rojo", descripcion="Simbolismo: Amor y seducción", precio=8500.0, categoria_id=Categoria1.id)
+    Producto2 = Producto(codigo="1lb", nombre="lirio blanco", descripcion="Simbolismo: Pureza y belleza", precio=8000.0, categoria_id=Categoria1.id)
+    Producto3 = Producto(codigo="1ln", nombre="lirio naranja", descripcion="Simbolismo: Pasion", precio=8000.0, categoria_id=Categoria1.id)
+    Producto4 = Producto(codigo="1fr", nombre="arboles frutales", descripcion="Consultar segun la temporada", precio=8000.0, categoria_id=Categoria2.id)
+    Producto5 = Producto(codigo="1ca", nombre="cactus", descripcion="Fuentes de exito personal y laboral", precio=8000.0, categoria_id=Categoria3.id)
+    Producto6 = Producto(codigo="1gr", nombre="gromineas", descripcion="Plantita espectacular para decorar", precio=8000.0, categoria_id=Categoria4.id)
+    Producto7 = Producto(codigo="1fu", nombre="fuentes", descripcion="Contamos con distintos modelos", precio=8000.0, categoria_id=Categoria5.id)
+    Producto8 = Producto(codigo="1ma", nombre="macetas", descripcion="Variedad de colores y modelos", precio=8000.0, categoria_id=Categoria6.id)
+    Producto9 = Producto(codigo="1he", nombre="herramientas", descripcion="Palas, regaderas, mangueras y mas", precio=8000.0, categoria_id=Categoria7.id)
+    Producto1.save()
+    Producto2.save()
+    Producto3.save()
+    Producto4.save()
+    Producto5.save()
+    Producto6.save()
+    Producto7.save()
+    Producto8.save()
+    Producto9.save()
+    return redirect("secciones")

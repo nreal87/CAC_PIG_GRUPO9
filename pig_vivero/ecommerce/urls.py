@@ -20,7 +20,6 @@ from . import views
 urlpatterns = [
     # path('admin/', admin.site.urls),
     path('',views.secciones, name="secciones"),
-    path('<str:seccion>/',views.secciones, name="secciones"),
     path('productos/', views.productos, name="productos"),
     #ruta parametrizada, ingresamos a cada categoria de productos
     path('productos/<str:categoria>/', views.producto_categoria, name="productos_categoria"),
@@ -28,4 +27,8 @@ urlpatterns = [
     path('comprar_carrito/',views.comprar_carrito, name="comprar_carrito"),
     #agrego ruta para login
     path('login/', views.login, name="login"),
+    # Esta vista se crea para inicializar la db con instancias de los modelos mas facilmente
+    path('iniciar_db/', views.iniciar_db, name="iniciar_db"),
+    # Esta url debe ser la ultima porque si no matcheo con otra antes es porque va a asumir que es una seccion del index
+    path('<str:seccion>/',views.secciones, name="secciones"),
 ]

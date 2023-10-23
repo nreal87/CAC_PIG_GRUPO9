@@ -33,27 +33,6 @@ class Producto(models.Model):
     precio = models.FloatField(verbose_name="precio del producto")
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
     # imagen = models.ImageField(verbose_name="imagen del producto") # Esto hay que chequear si no se necesitan otras dependencias para que funcione
-
-    # Este metodo es un auxiliar para crear mas facil los productos inicialmente
-    def crear_productos(self):
-        Producto1 = Producto("1lr", "lirio rojo", "Simbolismo: Amor y seducción", "8500", "lirio")
-        Producto2 = Producto("1lb", "lirio blanco", "Simbolismo: Pureza y belleza", "8000", "lirio")
-        Producto3 = Producto("1ln", "lirio naranja", "Simbolismo: Pasion", "8000", "lirio")
-        Producto4 = Producto("1fr", "arboles frutales", "Consultar segun la temporada", "8000", "frutales")
-        Producto5 = Producto("1ca", "cactus", "Fuentes de exito personal y laboral", "8000", "cactus")
-        Producto6 = Producto("1gr", "gromineas", "Plantita espectacular para decorar", "8000", "gromineas")
-        Producto7 = Producto("1fu", "fuentes", "Contamos con distintos modelos", "8000", "fuentes")
-        Producto8 = Producto("1ma", "macetas", "Variedad de colores y modelos", "8000", "macetas")
-        Producto9 = Producto("1he", "herramientas", "Palas, regaderas, mangueras y mas", "8000", "herramientas")
-        Producto1.save()
-        Producto2.save()
-        Producto3.save()
-        Producto4.save()
-        Producto5.save()
-        Producto6.save()
-        Producto7.save()
-        Producto8.save()
-        Producto9.save()
     
     def __str__(self):
         return self.nombre
@@ -99,5 +78,3 @@ class Carrito(models.Model):
     direccion_entrega = models.CharField(verbose_name="direccion de entrega", max_length=250)
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
     items_carrito = models.ManyToManyField(ItemCarrito)
-
-
