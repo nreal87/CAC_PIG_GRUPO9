@@ -32,7 +32,7 @@ class Producto(models.Model):
     descripcion = models.CharField(verbose_name="descripcion del producto", max_length=250)
     precio = models.FloatField(verbose_name="precio del producto")
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
-    # imagen = models.ImageField(verbose_name="imagen del producto") # Esto hay que chequear si no se necesitan otras dependencias para que funcione
+    #imagen = models.ImageField(verbose_name="imagen del producto",upload_to='../static/ecommerce/images', blank=True, null=True) # Esto hay que chequear si no se necesitan otras dependencias para que funcione
     
     def __str__(self):
         return self.nombre
