@@ -9,7 +9,7 @@ from ecommerce.models import Cliente, Categoria, Producto, Inventario
 
 
 def __buscar_categorias():
-    # categorias = ["lirio", "frutales","gromineas","herramientas", "macetas", "fuentes", "cactus"]
+    #categorias = ["lirio", "frutales","gromineas","herramientas", "macetas", "fuentes", "cactus"]
     categorias = Categoria.objects.all()
     return categorias
 
@@ -27,7 +27,11 @@ def __buscar_productos(cat = "todas"):
     if cat == "todas":
         productos = Producto.objects.all()
     else:
-        productos = Producto.objects.filter(categoria = cat)
+       #productos = Producto.objects.filter(categoria = cat)
+       #Consultar si hay una mejor forma de hacer esta consulta
+       consulta_categoria = Categoria.objects.filter(nombre = cat)
+       productos = Producto.objects.filter(categoria = consulta_categoria[0].id) 
+
     productos_lista = []
     for prod in productos:
         # productos_lista.append({"codigo":prod.codigo, "nombre":prod.nombre, "descripcion":prod.descripcion, "precio":prod.precio, "stock":prod.cantidad, "categoria":prod.categoria, "imagen":prod.imagen}) # Para que ande la imagen posiblemente haga falta otra dependencia
@@ -57,7 +61,8 @@ def secciones(request, seccion = ''):
 
 def productos(request):
     context = {"ahora":datetime.now,
-               "productos": __buscar_productos()
+               "productos": __buscar_productos(),
+               "categorias": __buscar_categorias(),
               }
     return render(request,"productos.html", context)
 
