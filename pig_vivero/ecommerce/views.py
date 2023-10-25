@@ -1,4 +1,4 @@
-from ecommerce.forms import ContactoForm
+from ecommerce.forms import ContactoForm, ProductoForm
 from datetime import datetime
 from django.templatetags.static import static
 from django.http import HttpResponse, HttpResponseBadRequest
@@ -6,6 +6,7 @@ from django.shortcuts import render, redirect
 from django.core.exceptions import ValidationError
 from django.contrib import messages
 from ecommerce.models import Cliente, Categoria, Producto, Inventario
+
 
 
 def __buscar_categorias():
@@ -135,3 +136,18 @@ def iniciar_db(request):
     Producto8.save()
     Producto9.save()
     return redirect("secciones")
+
+
+def crear_producto(request):
+    
+    if request.method == 'POST':
+        formulario = ProductoForm(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            messages.success(request, 'Producto guardado.')
+            # return redirect('productos')
+    
+    context = { "ahora": datetime.now,
+                "formulario_producto": ProductoForm(),
+            }
+    return render(request, "crear_producto.html", context)
