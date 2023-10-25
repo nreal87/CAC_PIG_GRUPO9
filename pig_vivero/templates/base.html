@@ -18,56 +18,56 @@
 
 <body>
 <!--Seccion Header-->
-<header class="header">
-  <nav class="navegacion">
-    <div class="navegacion__logo">
-      <a href="#portada">
-        <img class="img" src="{% static "ecommerce/images/logo.png" %}" alt="logo">
-      </a>
-    </div>
-    <ul class="menu">
-      <li class="menu_li"><a class="menu_link" href="{% url "secciones" %}">INICIO</a></li>
-      <li class="menu_li"><a class="menu_link" href="{% url "secciones" "productos" %}">PRODUCTOS</a></li>
-      <li class="menu_li"><a class="menu_link" href="{% url "secciones" "servicios" %}">SERVICIOS</a></li>
-      <li class="menu_li"><a class="menu_link" href="{% url "secciones" "about_us" %}">NOSOTROS</a></li>
-      <li class="menu_li"><a class="menu_link" href="{% url "secciones" "contacto" %}">CONTACTO</a></li>
-      <li class="menu_li">
-      <form action="#" class="form-busqueda">
-        <input type="search" placeholder="Buscar...">
-        <button type="submit"><i class="fa fa-search"></i></button>
-      </form>
-      </li>
-    </ul>
-    <ul class="carrito">
-      <li class="menu_li"><a class="menu_link" href="{% url "login" %}">INGRESAR</a></li>
-      <!-- <li class="menu_li"><a class="menu_link" href="#">Log Out</a></li> -->
-      <li class="menu_li"><a class="menu_link" href="{% url "login" %}"><i class="fa fa-shopping-cart"></i></a></li>
-    </ul>
-      <!-- MENU PARA CELULAR -->
-      <div id="menu__icono">
-        <i class="fa fa-bars" aria-hidden="true" id="menu-hamburguesa"></i>
-        <i class="fa fa-times close" aria-hidden="true" id="menu-cruz"></i>
+  <header class="header">
+    <nav class="navegacion">
+      <div class="navegacion__logo">
+        <a href="#portada">
+          <img class="img" src="{% static "ecommerce/images/logo.png" %}" alt="logo">
+        </a>
       </div>
-      <div class="menu__celular" id="menu__celular">
-        <ul class="menu">
-          <li class="menu_li"><a class="menu_link" href="{% url "secciones" %}">INICIO</a></li>
-          <li class="menu_li"><a class="menu_link" href="{% url "secciones" "productos" %}">PRODUCTOS</a></li>
-          <li class="menu_li"><a class="menu_link" href="{% url "secciones" "servicios" %}">SERVICIOS</a></li>
-          <li class="menu_li"><a class="menu_link" href="{% url "secciones" "about_us" %}">NOSOTROS</a></li>
-          <li class="menu_li"><a class="menu_link" href="{% url "secciones" "contacto" %}">CONTACTO</a></li>
-          <br>
-          <br>
-          <li class="menu_li"><a class="menu_link" href="{% url "login" %}">INGRESAR</a></li>
-          <!-- <li class="menu_li"><a class="menu_link" href="#">Log Out</a></li> -->
-          <li class="menu_li"><a class="menu_link" href="#"><i class="fa fa-shopping-cart"></i></a></li>
-        </ul>
-      </div>
-      <!-- FIN MENU PARA CELULAR -->
-    </nav>
-  </header>
-  <body>  
+      <ul class="menu">
+        <li class="menu_li"><a class="menu_link" href="{% url "secciones" %}">INICIO</a></li>
+        <li class="menu_li"><a class="menu_link" href="{% url "secciones" "productos" %}">PRODUCTOS</a></li>
+        <li class="menu_li"><a class="menu_link" href="{% url "secciones" "servicios" %}">SERVICIOS</a></li>
+        <li class="menu_li"><a class="menu_link" href="{% url "secciones" "about_us" %}">NOSOTROS</a></li>
+        <li class="menu_li"><a class="menu_link" href="{% url "secciones" "contacto" %}">CONTACTO</a></li>
+        <li class="menu_li">
+        <form action="#" class="form-busqueda">
+          <input type="search" placeholder="Buscar...">
+          <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+        </li>
+      </ul>
+      <ul class="carrito">
+        <li class="menu_li"><a class="menu_link" href="{% url "login" %}">INGRESAR</a></li>
+        <!-- <li class="menu_li"><a class="menu_link" href="#">Log Out</a></li> -->
+        <li class="menu_li"><a class="menu_link" href="{% url "login" %}"><i class="fa fa-shopping-cart"></i></a></li>
+      </ul>
+        <!-- MENU PARA CELULAR -->
+        <div id="menu__icono">
+          <i class="fa fa-bars" aria-hidden="true" id="menu-hamburguesa"></i>
+          <i class="fa fa-times close" aria-hidden="true" id="menu-cruz"></i>
+        </div>
+        <div class="menu__celular" id="menu__celular">
+          <ul class="menu">
+            <li class="menu_li"><a class="menu_link" href="{% url "secciones" %}">INICIO</a></li>
+            <li class="menu_li"><a class="menu_link" href="{% url "secciones" "productos" %}">PRODUCTOS</a></li>
+            <li class="menu_li"><a class="menu_link" href="{% url "secciones" "servicios" %}">SERVICIOS</a></li>
+            <li class="menu_li"><a class="menu_link" href="{% url "secciones" "about_us" %}">NOSOTROS</a></li>
+            <li class="menu_li"><a class="menu_link" href="{% url "secciones" "contacto" %}">CONTACTO</a></li>
+            <br>
+            <br>
+            <li class="menu_li"><a class="menu_link" href="{% url "login" %}">INGRESAR</a></li>
+            <!-- <li class="menu_li"><a class="menu_link" href="#">Log Out</a></li> -->
+            <li class="menu_li"><a class="menu_link" href="#"><i class="fa fa-shopping-cart"></i></a></li>
+          </ul>
+        </div>
+        <!-- FIN MENU PARA CELULAR -->
+      </nav>
+    </header>
+  
   {% block contenido %}{% endblock contenido %}
-  </body>  
+  
   <!--Seccion footer-->
   <footer class="footer_base">
     <div class="footer_container">

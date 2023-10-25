@@ -1,5 +1,6 @@
 from django import forms
 from django.forms import ValidationError
+from ecommerce.models import Producto, Categoria
 
 def validar_nombre(nombre):
 
@@ -47,3 +48,18 @@ class ContactoForm(forms.Form):
                                    code='Error')
         return self.cleaned_data['consulta']
 
+class ProductoForm(forms.ModelForm):
+    codigo = forms.CharField(label='Código', widget=forms.TextInput(attrs={'class': 'form-control'}))
+
+    nombre = forms.CharField(label='Nombre', widget=forms.TextInput(attrs={'class': 'form-control'}))
+
+    descripcion = forms.CharField(label='Descripcion', widget=forms.TextInput(attrs={'class': 'form-control'}))
+
+    precio = forms.FloatField(label='Precio', widget=forms.TextInput(attrs={'class': 'form-control'}))
+
+    categoria = forms.ModelChoiceField(queryset=Categoria.objects.all(),
+         label='Categoria', widget=forms.Select(attrs={'class': 'form-control'}))
+    
+    class Meta: 
+        model = Producto
+        fields = ['codigo', 'nombre', 'descripcion', 'precio', 'categoria']

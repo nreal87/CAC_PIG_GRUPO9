@@ -167,8 +167,7 @@
         {% csrf_token %}
         {% comment %} {{formulario_contacto}} {% endcomment %}
         {% for campo in formulario_contacto %}
-        
-        
+
                 <label for="name">{{ campo.label }}</label>
                 {{campo}}
                 

@@ -11,7 +11,7 @@
         <h3 class="mt-4">Productos:</h3>
         <ul class="nav nav-pills flex-column">
           {% for categoria in categorias %}
-            {% if categoria == activo %}
+            {% if categoria.nombre == activo %}
               <li class="nav-item ">
                 <a class="nav-link active" href="{% url 'productos_categoria' categoria %}"> {{categoria}} </a>
               </li>
