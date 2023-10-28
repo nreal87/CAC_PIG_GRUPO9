@@ -50,13 +50,9 @@ class ContactoForm(forms.Form):
 
 class ProductoForm(forms.ModelForm):
     codigo = forms.CharField(label='Código', widget=forms.TextInput(attrs={'class': 'form-control'}))
-
     nombre = forms.CharField(label='Nombre', widget=forms.TextInput(attrs={'class': 'form-control'}))
-
     descripcion = forms.CharField(label='Descripcion', widget=forms.TextInput(attrs={'class': 'form-control'}))
-
     precio = forms.FloatField(label='Precio', widget=forms.TextInput(attrs={'class': 'form-control'}))
-
     categoria = forms.ModelChoiceField(queryset=Categoria.objects.all(),
          label='Categoria', widget=forms.Select(attrs={'class': 'form-control'}))
     
