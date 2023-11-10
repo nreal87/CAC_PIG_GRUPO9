@@ -5,7 +5,7 @@ from django.http import HttpResponse, HttpResponseBadRequest
 from django.shortcuts import render, redirect
 from django.core.exceptions import ValidationError
 from django.contrib import messages
-from ecommerce.models import Cliente, Categoria, Producto, Inventario
+from ecommerce.models import Cliente, Categoria, Producto
 
 
 
