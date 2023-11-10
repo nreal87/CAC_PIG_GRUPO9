@@ -8,14 +8,11 @@ Grupo 9
 ## ¿Cuándo se expone?
 Exposiciones Parciales: 
 
-- Semana del 18/9 al 22/9 – Fecha 15 según Programa.
-- Semana del 2/10 al 6/10 – Fecha 20 según Programa.
-- Semana del 23/10 al 27/10 – Fecha 25 según Programa.
-- Semana del 6/11 al 10/11 – Fecha 30 según Programa.
-
-
-Exposición FINAL OBLIGATORIA: Semana del 22/11 en adelante (Fecha 33 según Cronograma en adelante)
-
+- [x] Semana del 18/9 al 22/9 – Fecha 15 según Programa.
+- [x] Semana del 2/10 al 6/10 – Fecha 20 según Programa.
+- [x] Semana del 23/10 al 27/10 – Fecha 25 según Programa.
+- [x] Semana del 6/11 al 10/11 – Fecha 30 según Programa.
+- [ ] Exposición FINAL OBLIGATORIA: Semana del 22/11 en adelante (Fecha 33 según Cronograma en adelante)
 
 
 ## ¿Qué hay que entregar?
