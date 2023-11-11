@@ -1,0 +1,188 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block contenido %}
+    <!-- Mensaje que se muestra cuando el formulario se proceso correctamente -->
+    {% if messages %}
+      {% for message in messages %}
+        {% if message.tags == 'success' %}
+        {% comment %} <div class="mensaje__ok"> {{ message }} </div> {% endcomment %}
+          <div class="alert alert-success alert-dismissible">
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            {{ message }}
+          </div>
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+  <!-- Seccion portada -->
+  <section id="portada">
+
+    <div class="slider">
+      <ul>
+        <li><img src="{% static "ecommerce/images/carrusel0.jpg" %}" alt="lirios rosa"></li>
+        <li><img src="{% static "ecommerce/images/carrusel1.jpg" %}" alt="lirios amarillo"></li>
+        <li><img src="{% static "ecommerce/images/carrusel2.jpg" %}" alt="lirios rojo"></li>
+        <li><img src="{% static "ecommerce/images/carrusel3.jpg" %}" alt="jardin de lirios"></li>
+      </ul>
+    </div>
+   
+    <div class="portada__box">
+      <div class="portada__box-container">
+        <h1>Vivero Los Lirios</h1>
+        <p>¡Bienvenido/a! Aquí encontrarás una amplia variedad de Lirios y plantas de alta calidad para darle un toque
+          natural y fresco a cualquier espacio de tu hogar.</p>
+        <br>
+        <p>Explora nuestra colección y encuentra el Lirio ideal para dar vida a tu hogar. ¡No esperes más para disfrutar
+          de la belleza de la naturaleza en tu hogar!</p>
+        <button><a href="{% url "productos" %}">VER PRODUCTOS</a></button>
+      </div>
+    </div>
+    <div class="portada__fade"></div>
+
+  </section>
+
+  <!--Seccion Productos-->
+
+  <section id="productos" class="flex_productos_container">
+    <div>
+      <h2 id="product_title">PRODUCTOS</h2>
+    </div>
+
+    <div class="grid_container">
+
+      {% for producto in productos_index %}
+        <div class="grid_item">
+            <img src={{producto.imagen}} alt="" class="image_item" >
+            <div class="card_info">
+            <h4 class="card_title"> {{producto.nombre | upper}} </h4>
+            <p class="card_text">{{producto.descripcion}}</p>
+            <a href="{% url 'productos_categoria' producto.categoria %}"><button class="btn_item">IR A COMPRAR</button></a>
+          </div>
+        </div>
+      {% endfor %}
+      
+    </div>
+  </section>
+
+  <!-- seccion de informacion -->
+  <section id="informacion">
+    <div class="info_container">
+      <div class="info_item">
+        <img src="{% static "ecommerce/icons/001-nuevo.png" %}" alt="imagen de promocion.">
+        <h3>No te pierdas nuestras promociones.</h3>
+        <p>Seguinos.</p>
+      </div>
+
+      <div class="info_item">
+        <img src="{% static "ecommerce/icons/002-cupn.png" %}" alt="imagen de tarjeta de regalo">
+        <h3>Regala una Giftcard.</h3>
+        <p>Podes realizar regalos por montos.</p>
+      </div>
+
+      <div class="info_item">
+        <img src="{% static "ecommerce/icons/003-negro.png" %}" alt="imagen de forma de pago.">
+        <h3>Pago Seguro</h3>
+        <p>Realizá tu compra con tarjeta, transferencia o efectivo.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Seccion de servicios -->
+  <section id="servicios">
+    <div class="flex_elem_serv">
+      <div>
+        <h2 id="servicios_title">SERVICIOS</h2>
+      </div>
+
+      <div class="serv_flex_container">
+
+        <div class="serv_flex_item">
+          <div class="card_info">
+            <h4 class="card_title_serv">Asesoramiento Profesional.</h4>
+            <p class="card_text_serv">Despejamos todas sus dudas al instante.</p>
+          </div>
+          <img class="image_serv" src="{% static "ecommerce/images/profesional1.jpg" %}" 
+               alt="imagen de un profesional botánico.">
+        </div>
+
+        <div class="serv_flex_item">
+          <div class="card_info">
+            <h4 class="card_title_serv">Diseño y ejecucion de<br>parques y jardines.</h4>
+            <p class="card_text_serv">Contamos con especialistas en paisajismo.</p>
+          </div>
+          <img class="image_serv" src="{% static "ecommerce/images/servicio_jardineria.jpg" %}"
+               alt="imagen de un paisajista trabajando.">
+        </div>
+
+        <div class="serv_flex_item">
+          <div class="card_info">
+            <h4 class="card_title_serv">Envios a Domicilio.</h4>
+            <p class="card_text_serv">Consulte precios por envios a domicilio.</p>
+          </div>
+          <img class="image_serv" src="{% static "ecommerce/images/entrega.jpg" %}"
+               alt="imagen de hombre haciendo entrega a domicilio.">
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Seccion sobre Nosotros -->
+
+  <section id="about_us">
+    <h2 class=" about_us-title">SOBRE NOSOTROS</h2>
+     <div class="about_us__box"> 
+            <div class="about_us__box-container">
+            <img class="responsive" src="{% static "ecommerce/images/profesional.jpg" %}" alt="about_us">
+            <br>
+            <p>  En nuestra tienda de Lirios, creemos firmemente en el poder transformador de la naturaleza en nuestros hogares y en nuestras vidas. Nos enorgullece ofrecer una amplia variedad de plantas de Lirios de alta calidad, herramientas y accesorios para el cuidado de tus plantas, y servicios de jardinería y asesoramiento para que puedas disfrutar de un hogar lleno de vida y belleza natural.</p>
+            <br>
+            <p>Nuestro equipo de expertos en jardinería está comprometido con ofrecer un servicio de atención al cliente excepcional, y estamos aquí para ayudarte a encontrar los productos adecuados para tus necesidades y para asegurarnos de que tus plantas de Lirios reciban el cuidado y el mantenimiento adecuado. Nos tomamos en serio la calidad y la sostenibilidad de nuestros productos, y nos esforzamos por ofrecer plantas de Lirios cultivadas de manera responsable y respetuosa con el medio ambiente.</p>
+            <br>
+            <p>En definitiva, en nuestra tienda de Lirios nos esforzamos por ayudarte a crear un hogar lleno de vida y de belleza natural. Estamos aquí para apoyarte en todas tus necesidades de jardinería, desde la elección de la planta adecuada hasta el cuidado y el mantenimiento de tus plantas de Lirios. </p>
+            <br>
+            <p> Muchas gracias por confiar en nosotros.</p>
+            </div>
+        </div>
+  </section>
+
+  <!-- Seccion contacto -->
+  <section id="contacto">
+   
+    {% if messages %}
+      {% for message in messages %}
+        {% if message.tags == 'error' %}
+          {% comment %} <div class="mensaje__error"> {{ message }} </div> {% endcomment %}
+          <div class="alert alert-danger alert-dismissible">
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            {{message}}
+          </div>
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+    
+    <h2 class="contacto__titulo"> CONTACTANOS </h2>
+           
+    <div class="contacto__container">
+      <form action="{% url 'secciones' 'contacto' %}" method="POST">
+        {% csrf_token %}
+        {% comment %} {{formulario_contacto}} {% endcomment %}
+        {% for campo in formulario_contacto %}
+
+                <label for="name">{{ campo.label }}</label>
+                {{campo}}
+                
+            <div>{{campo.errors}}</div>
+        
+        <!--Grid column-->
+    {% endfor %}
+        <button id="submit" type="submit">ENVIAR</button>
+      </form>
+     
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12553.419242785501!2d-61.81092347452089!3d-38.13194196596664!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95eceeb3c5f52fcd%3A0x6d75d51090223690!2sVivero%20Los%20Lirios!5e0!3m2!1ses-419!2sar!4v1683947964591!5m2!1ses-419!2sar"
+        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </section>
+
+{% endblock contenido %}
