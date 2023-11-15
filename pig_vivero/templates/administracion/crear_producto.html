@@ -17,9 +17,10 @@
   </form> {% endcomment %}
   <div class="container mt-3">
     <h2>Agregar Producto</h2>
-    <form action="{% url 'crear_producto' %}" method="POST">
+    <form action="" method="post" enctype="multipart/form-data">
       {% csrf_token %}
-      {% for campo in formulario_producto %}
+      {% comment %} {% for campo in formulario_producto %} {% endcomment %}
+      {% for campo in form %}
         <div class="mb-3 mt-3">
           <label for="name">{{ campo.label }}</label>
           {{campo}}

@@ -3,17 +3,16 @@ from django.forms import ValidationError
 from administracion.models import Producto, Categoria
 
 class ProductoForm(forms.ModelForm):
-    """ Este es el formulario asociado al modelo producto """
+    """ Formulario asociado al modelo producto """
     nombre = forms.CharField(label='Nombre', widget=forms.TextInput(attrs={'class': 'form-control'}))
     descripcion = forms.CharField(label='Descripcion', widget=forms.TextInput(attrs={'class': 'form-control'}))
     precio = forms.FloatField(label='Precio', widget=forms.TextInput(attrs={'class': 'form-control'}))
     cantidad = forms.IntegerField(label='Cantidad', widget=forms.TextInput(attrs={'class': 'form-control'}))
-    imagen = forms.FileInput(attrs={'class':'form-control'})
-    categoria = forms.ModelChoiceField(queryset=Categoria.objects.all(),
-         label='Categoria', widget=forms.Select(attrs={'class': 'form-control'}))
-    promocion = forms.BooleanField(label='Promocionar', widget=forms.CheckboxInput(attrs={'class': 'form-control'}))
+    imagen = forms.ImageField(widget=forms.FileInput(attrs={'class': 'form-control'}))
+    categoria = forms.ModelChoiceField (queryset=Categoria.objects.all(),
+         widget=forms.SelectMultiple(attrs={'class': 'form-control'}))
+    promocion = forms.BooleanField(widget=forms.CheckboxInput(), label='Promocionar', required=False)
     
-
     class Meta: 
         model = Producto
         fields = ['nombre', 'descripcion', 'precio', 'cantidad', 'imagen', 'categoria', 'promocion']

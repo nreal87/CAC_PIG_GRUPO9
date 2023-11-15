@@ -38,12 +38,12 @@ class Categoria(models.Model):
 # Clase "Producto"
 # -------------------------------------------------------------------
 class Producto(models.Model):
-    nombre = models.CharField(verbose_name="Nombre",max_length=250)
+    nombre = models.CharField(verbose_name="Nombre", max_length=250)
     descripcion = models.CharField(verbose_name="Descripcion", max_length=250)
     precio = models.FloatField(verbose_name="Precio")
     cantidad = models.IntegerField(verbose_name="Cantidad")
     imagen = models.ImageField(upload_to='imagenes/', null=True, verbose_name='Imagen del producto')
-    promocion = models.BooleanField(verbose_name="Promocion") #si lo ponemos en True se mostrara en el index
+    promocion = models.BooleanField(verbose_name="Promocion", null=True) #si lo ponemos en True se mostrara en el index
     categoria = models.ManyToManyField(Categoria)#Relacion de muchos a muchos entre Producto y Categoria
 
     def __str__(self):

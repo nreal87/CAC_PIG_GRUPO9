@@ -18,17 +18,16 @@ def index_producto(request):
     context = {'productos' : productos}
     return render(request, "administracion/index_producto.html", context)
 
-
 def crear_producto(request):
     
     if request.method == 'POST':
-        formulario = ProductoForm(request.POST)
+        formulario = ProductoForm(request.POST, request.FILES)
         if formulario.is_valid():
             formulario.save()
-            messages.success(request, 'Producto guardado.')
-            # return redirect('productos')
-    
-    context = {"formulario_producto": ProductoForm()}
+            #messages.success(request, 'Producto guardado.')
+            return redirect('index_producto')
+
+    context = {"form": ProductoForm()}
     return render(request, "administracion/crear_producto.html", context)
 
 
@@ -40,14 +39,21 @@ def modificar_producto(request, id_prod):
         formulario = ProductoForm(request.POST, instance = producto)
         if formulario.is_valid():
             formulario.save()
-            return redirect('producto_index')
+            return redirect('index_producto')
     else:
         formulario = ProductoForm(instance = producto)
-    return render(request, "administracion/editar_producto.html", {'form': formulario})        
-    
+
+    return render(request, "administracion/editar_producto.html", {'form': formulario})
+
 
 def eliminar_producto(request, id_prod):
-    return render(request, "administracion/eliminar_producto.html", {})
+    
+    producto = Producto.objects.get(pk = id_prod)
+    producto.delete()
+
+    return redirect('index_producto')
+
+
 
 #Las vistas para el CRUD de categoria lo hacemos con vistas basadas en clases
 class IndexCategoriaView(ListView):
@@ -57,7 +63,7 @@ class IndexCategoriaView(ListView):
 
 
 class CrearCategoriaView(CreateView):
-    model= Categoria
+    model = Categoria
     fields = ['nombre']
     template_name = 'administracion/crear_cat.html'
     success_url = reverse_lazy('index_categoria')
