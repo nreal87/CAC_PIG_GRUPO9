@@ -11,9 +11,17 @@ class ProductoForm(forms.ModelForm):
     imagen = forms.FileInput(attrs={'class':'form-control'})
     categoria = forms.ModelChoiceField(queryset=Categoria.objects.all(),
          label='Categoria', widget=forms.Select(attrs={'class': 'form-control'}))
-    promocion = forms.BooleanField(label='Promocionar', widget=forms.Select(attrs={'class': 'form-control'}))
+    promocion = forms.BooleanField(label='Promocionar', widget=forms.CheckboxInput(attrs={'class': 'form-control'}))
     
 
     class Meta: 
         model = Producto
         fields = ['nombre', 'descripcion', 'precio', 'cantidad', 'imagen', 'categoria', 'promocion']
+
+
+class CategoriaForm(forms.ModelForm):
+    nombre = forms.CharField(label='Nombre' , max_length=250, required=True, widget=forms.TextInput(attrs={'class':'form-control'}))
+
+    class Meta:
+         model = Categoria
+         fields = ['nombre']
