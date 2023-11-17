@@ -47,7 +47,7 @@ class Producto(models.Model):
     categoria = models.ManyToManyField(Categoria)#Relacion de muchos a muchos entre Producto y Categoria
 
     def __str__(self):
-        return f'Nombre: {self.nombre} - Precio: {self.precio} - Cantidad: {self.cantidad} - Promocion: {self.promocion}'
+        return f'Nombre: {self.nombre} - Precio: {self.precio} - Cantidad: {self.cantidad} - Promocion: {self.promocion} - Cat: {self.categoria}'
 
 
     # Este método permite modificar un producto.

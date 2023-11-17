@@ -16,6 +16,7 @@ def index_administracion(request):
 def index_producto(request):
     productos = Producto.objects.all()
     context = {'productos' : productos}
+    print(f'{productos}')
     return render(request, "administracion/index_producto.html", context)
 
 def crear_producto(request):
