@@ -25,7 +25,8 @@ urlpatterns = [
     path('productos/<int:id_prod>/', views.producto_id, name="producto_id"),
     path('productos/<str:categoria>/', views.producto_categoria, name="productos_categoria"),
     path('ver_carrito/',views.ver_carrito, name="ver_carrito"),
-    path('comprar_carrito/',views.comprar_carrito, name="comprar_carrito"),
+    # path('comprar_carrito/',views.comprar_carrito, name="comprar_carrito"),
+    path('ver_carrito/', views.ProductosListView.as_view(), name="ver_carrito"), 
     #agrego ruta para login
     path('login/', views.login, name="login"),
     # Esta vista se crea para inicializar la db con instancias de los modelos mas facilmente

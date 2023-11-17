@@ -6,6 +6,7 @@ from django.shortcuts import render, redirect
 from django.core.exceptions import ValidationError
 from django.contrib import messages
 from administracion.models import Cliente, Categoria, Producto
+from django.views.generic import ListView, CreateView, DeleteView, UpdateView
 
 
 def __buscar_categorias():
@@ -107,6 +108,14 @@ def ver_carrito(request):
                "productos": __buscar_productos()
                }
     return render(request, "carrito.html", context)
+
+class ProductosListView(ListView):
+    model = Producto
+    context_object_name = 'productos'
+    template_name = 'ecommerce/carrito.html'
+    queryset = Categoria.objects.all()
+    ordering = ['nombre']
+
 
 
 # En esta vista deberiamos manejar la validacion de la compra del carrito y mostrar un mensaje de exito o error en la operacion
