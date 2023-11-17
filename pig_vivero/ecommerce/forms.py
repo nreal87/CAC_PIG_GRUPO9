@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ValidationError
-from ecommerce.models import Producto, Categoria
+from administracion.models import Producto, Categoria
 
 def validar_nombre(nombre):
 
@@ -12,6 +12,7 @@ def validar_nombre(nombre):
 
 
 class ContactoForm(forms.Form):
+    """ Formulario de contacto asociado a un template, tiene validaciones de frontend y backend """
     SUCURSALES = (('', 'Seleccione Sucursal'),
                   ('1', 'Córdoba'),
                   ('2', 'Buenos Aires'),
@@ -23,7 +24,7 @@ class ContactoForm(forms.Form):
                              max_length=50,
                              required=True,
                              validators=(validar_nombre,)
-                             )    
+                             )
     
     email = forms.EmailField(label="Email", max_length=70,
                              widget=forms.TextInput(attrs={'placeholder': 'ejemplo@dominio.com',}),
@@ -47,15 +48,3 @@ class ContactoForm(forms.Form):
             raise ValidationError("La consulta ingresada es muy corta.",
                                    code='Error')
         return self.cleaned_data['consulta']
-
-class ProductoForm(forms.ModelForm):
-    codigo = forms.CharField(label='Código', widget=forms.TextInput(attrs={'class': 'form-control'}))
-    nombre = forms.CharField(label='Nombre', widget=forms.TextInput(attrs={'class': 'form-control'}))
-    descripcion = forms.CharField(label='Descripcion', widget=forms.TextInput(attrs={'class': 'form-control'}))
-    precio = forms.FloatField(label='Precio', widget=forms.TextInput(attrs={'class': 'form-control'}))
-    categoria = forms.ModelChoiceField(queryset=Categoria.objects.all(),
-         label='Categoria', widget=forms.Select(attrs={'class': 'form-control'}))
-    
-    class Meta: 
-        model = Producto
-        fields = ['codigo', 'nombre', 'descripcion', 'precio', 'categoria']

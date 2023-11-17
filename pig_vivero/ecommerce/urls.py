@@ -22,7 +22,7 @@ urlpatterns = [
     path('',views.secciones, name="secciones"),
     path('productos/', views.productos, name="productos"),
     #ruta parametrizada, ingresamos a cada categoria de productos
-    path('crear_producto/', views.crear_producto, name="crear_producto"),
+    path('productos/<int:id_prod>/', views.producto_id, name="producto_id"),
     path('productos/<str:categoria>/', views.producto_categoria, name="productos_categoria"),
     path('ver_carrito/',views.ver_carrito, name="ver_carrito"),
     path('comprar_carrito/',views.comprar_carrito, name="comprar_carrito"),
