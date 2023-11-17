@@ -1,0 +1,36 @@
+{% extends "base.html" %} 
+{% load static %}
+
+{% block contenido %}
+
+{% comment %} <form action="{% url 'crear_producto' %}" method="POST">
+    {% csrf_token %}
+    
+    {% for campo in formulario_producto %}
+
+            <label for="name">{{ campo.label }}</label>
+            {{campo}}
+            
+            <div>{{campo.errors}}</div>
+    {% endfor %}
+    <button id="submit" type="submit">AGREGAR</button>
+  </form> {% endcomment %}
+  <div class="container mt-3">
+    <h2>Agregar Producto</h2>
+    <form action="" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      {% comment %} {% for campo in formulario_producto %} {% endcomment %}
+      {% for campo in form %}
+        <div class="mb-3 mt-3">
+          <label for="name">{{ campo.label }}</label>
+          {{campo}}
+          <div>{{campo.errors}}</div>
+        </div>    
+        
+      {% endfor %}
+      <button type="submit" class="btn btn-primary">AGREGAR</button>
+    </form> 
+</div>
+
+{% endblock contenido %} 
+
