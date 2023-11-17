@@ -103,12 +103,6 @@ def producto_categoria(request, categoria):
 
 
 # En esta vista deberiamos manejar la visualizacion del carrito del usuario con los productos elegidos, cantidades, precios y total
-def ver_carrito(request):
-    context = {"ahora": datetime.now,
-               "productos": __buscar_productos()
-               }
-    return render(request, "carrito.html", context)
-
 class ProductosListView(ListView):
     model = Producto
     context_object_name = 'productos'
@@ -151,22 +145,22 @@ def iniciar_db(request):
     Categoria6.save()
     Categoria7.save()
     # Creacion de productos
-    # Producto1 = Producto(promocion=True, nombre="lirio rojo", descripcion="Simbolismo: Amor y seducción", precio=8500.0, cantidad=20, categoria_id=Categoria1.id)
-    # Producto2 = Producto(promocion=True, nombre="lirio blanco", descripcion="Simbolismo: Pureza y belleza", precio=8000.0, categoria_id=Categoria1.id)
-    # Producto3 = Producto(promocion=True, nombre="lirio naranja", descripcion="Simbolismo: Pasion", precio=8000.0, categoria_id=Categoria1.id)
-    # Producto4 = Producto(promocion=True, nombre="arboles frutales", descripcion="Consultar segun la temporada", precio=8000.0, categoria_id=Categoria2.id)
-    # Producto5 = Producto(promocion=True, nombre="cactus", descripcion="Fuentes de exito personal y laboral", precio=8000.0, categoria_id=Categoria3.id)
-    # Producto6 = Producto(promocion=True, nombre="gromineas", descripcion="Plantita espectacular para decorar", precio=8000.0, categoria_id=Categoria4.id)
-    # Producto7 = Producto(promocion=True, nombre="fuentes", descripcion="Contamos con distintos modelos", precio=8000.0, categoria_id=Categoria5.id)
-    # Producto8 = Producto(promocion=True, nombre="macetas", descripcion="Variedad de colores y modelos", precio=8000.0, categoria_id=Categoria6.id)
-    # Producto9 = Producto(promocion=True, nombre="herramientas", descripcion="Palas, regaderas, mangueras y mas", precio=8000.0, categoria_id=Categoria7.id)
-    # Producto1.save()
-    # Producto2.save()
-    # Producto3.save()
-    # Producto4.save()
-    # Producto5.save()
-    # Producto6.save()
-    # Producto7.save()
-    # Producto8.save()
-    # Producto9.save()
+    Producto1 = Producto(promocion=True, nombre="lirio rojo", descripcion="Simbolismo: Amor y seducción", precio=8500.0, cantidad=20, categoria_id=Categoria1.id)
+    Producto2 = Producto(promocion=True, nombre="lirio blanco", descripcion="Simbolismo: Pureza y belleza", precio=8000.0, categoria_id=Categoria1.id)
+    Producto3 = Producto(promocion=True, nombre="lirio naranja", descripcion="Simbolismo: Pasion", precio=8000.0, categoria_id=Categoria1.id)
+    Producto4 = Producto(promocion=True, nombre="arboles frutales", descripcion="Consultar segun la temporada", precio=8000.0, categoria_id=Categoria2.id)
+    Producto5 = Producto(promocion=True, nombre="cactus", descripcion="Fuentes de exito personal y laboral", precio=8000.0, categoria_id=Categoria3.id)
+    Producto6 = Producto(promocion=True, nombre="gromineas", descripcion="Plantita espectacular para decorar", precio=8000.0, categoria_id=Categoria4.id)
+    Producto7 = Producto(promocion=True, nombre="fuentes", descripcion="Contamos con distintos modelos", precio=8000.0, categoria_id=Categoria5.id)
+    Producto8 = Producto(promocion=True, nombre="macetas", descripcion="Variedad de colores y modelos", precio=8000.0, categoria_id=Categoria6.id)
+    Producto9 = Producto(promocion=True, nombre="herramientas", descripcion="Palas, regaderas, mangueras y mas", precio=8000.0, categoria_id=Categoria7.id)
+    Producto1.save()
+    Producto2.save()
+    Producto3.save()
+    Producto4.save()
+    Producto5.save()
+    Producto6.save()
+    Producto7.save()
+    Producto8.save()
+    Producto9.save()
     return redirect("secciones")
