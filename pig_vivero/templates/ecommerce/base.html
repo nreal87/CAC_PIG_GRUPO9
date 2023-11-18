@@ -32,16 +32,21 @@
         <li class="menu_li"><a class="menu_link" href="{% url "secciones" "about_us" %}">NOSOTROS</a></li>
         <li class="menu_li"><a class="menu_link" href="{% url "secciones" "contacto" %}">CONTACTO</a></li>
         <li class="menu_li">
-        <form action="#" class="form-busqueda">
-          <input type="search" placeholder="Buscar...">
-          <button type="submit"><i class="fa fa-search"></i></button>
-        </form>
+          <form action="#" class="form-busqueda">
+            <input type="search" placeholder="Buscar...">
+            <button type="submit"><i class="fa fa-search"></i></button>
+          </form>
         </li>
       </ul>
       <ul class="carrito">
-        <li class="menu_li"><a class="menu_link" href="{% url "login" %}">INGRESAR</a></li>
+        {% if user.is_authenticated %}
+          <p type="text" style="display: inline" class="">Bienvenido\a, {{ user.username }}.</p>
+          {% comment %} <li class="menu_li" href="{% url 'ecommerce_logout' %}">Cerrar Sesión</li> {% endcomment %}
+        {% else %}
+          <li class="menu_li"><a class="menu_link" href="{% url "ecommerce_login" %}">INGRESAR ec</a></li>
+        {% endif %}
         <!-- <li class="menu_li"><a class="menu_link" href="#">Log Out</a></li> -->
-        <li class="menu_li"><a class="menu_link" href="{% url "login" %}"><i class="fa fa-shopping-cart"></i></a></li>
+        <li class="menu_li"><a class="menu_link" href="{% url "ver_carrito" %}"><i class="fa fa-shopping-cart"></i></a></li>
       </ul>
         <!-- MENU PARA CELULAR -->
         <div id="menu__icono">
@@ -57,7 +62,7 @@
             <li class="menu_li"><a class="menu_link" href="{% url "secciones" "contacto" %}">CONTACTO</a></li>
             <br>
             <br>
-            <li class="menu_li"><a class="menu_link" href="{% url "login" %}">INGRESAR</a></li>
+            <li class="menu_li"><a class="menu_link" href="{% url "ecommerce_login" %}">INGRESAR</a></li>
             <!-- <li class="menu_li"><a class="menu_link" href="#">Log Out</a></li> -->
             <li class="menu_li"><a class="menu_link" href="#"><i class="fa fa-shopping-cart"></i></a></li>
           </ul>

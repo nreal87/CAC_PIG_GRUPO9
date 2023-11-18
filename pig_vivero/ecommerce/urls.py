@@ -27,7 +27,7 @@ urlpatterns = [
     path('ver_carrito/', views.ProductosListView.as_view(), name="ver_carrito"), 
     path('comprar_carrito/',views.comprar_carrito, name="comprar_carrito"),
     #agrego ruta para login
-    path('login/', views.login, name="login"),
+    path('login/', views.ecommerce_login, name="ecommerce_login"),
     # Esta vista se crea para inicializar la db con instancias de los modelos mas facilmente
     path('iniciar_db/', views.iniciar_db, name="iniciar_db"),
     # Esta url debe ser la ultima porque si no matcheo con otra antes es porque va a asumir que es una seccion del index

@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "ecommerce/base.html" %}
 {% load static %}
 {% block titulo %}-Productos{% endblock titulo %}-Productos
 
@@ -6,34 +6,36 @@
 
     <h1 class="">Carrito</h1>
 
-    <table id="productosTable" class="table table-striped table-hover">
-      <thead>
-        <tr>
-          <th scope="col">Código</th>
-          <th scope="col">Nombre</th>
-          <th scope="col">Descripción</th>
-          <th scope="col">Precio</th>
-          <th scope="col">Stock</th>
-          <th scope="col">Categoría</th>
-          <th scope="col">Imagen</th>
-          <th scope="col">Acciones</th>
-        </tr>
-      </thead>
-      <tbody id="productosBody">
-        {% for producto in productos %}
+    <div class="col-sm-8">
+      <div class="row">
+        <table id="productosTable" class="table table-striped table-hover">
+          <thead>
             <tr>
-                <td>{{producto.codigo}}</td>
-                <td>{{producto.nombre}}</td>
-                <td>{{producto.descripcion}}</td>
-                <td>{{producto.precio}}</td>
-                <td>stock</td>
-                <td>{{producto.categoria}}</td>
-                <td>imagen</td>
-                <td>acciones</td>
+              <th scope="col">Nombre</th>
+              <th scope="col">Descripción</th>
+              <th scope="col">Precio</th>
+              <th scope="col">Stock</th>
+              <th scope="col">Categoría</th>
+              <th scope="col">Imagen</th>
+              <th scope="col">Acciones</th>
             </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+          </thead>
+          <tbody id="productosBody">
+            {% for producto in productos %}
+                <tr>
+                    <td>{{producto.nombre}}</td>
+                    <td>{{producto.descripcion}}</td>
+                    <td>{{producto.precio}}</td>
+                    <td>{{producto.cantidad}}</td>
+                    <td>{{producto.categoria}}</td>
+                    <td><img class="card-img-top" data-src= alt="imagen del producto" style="height: 30px; width: 30px; display: block;" src={{producto.imagen.url}} data-holder-rendered="true"></td>
+                    <td>acciones</td>
+                </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
 
     <!-- ventana emergente que aparece al presionar sobre el boton editar -->
     <div id="ventanaEmergente" class="ventana-emergente">

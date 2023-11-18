@@ -47,7 +47,8 @@ class Producto(models.Model):
     categoria = models.ManyToManyField(Categoria)#Relacion de muchos a muchos entre Producto y Categoria
 
     def __str__(self):
-        return f'Nombre: {self.nombre} - Precio: {self.precio} - Cantidad: {self.cantidad} - Promocion: {self.promocion} - Cat: {self.categoria}'
+        # return f'Nombre: {self.nombre} - Precio: {self.precio} - Cantidad: {self.cantidad} - Promocion: {self.promocion} - Cat: {self.categoria}'
+        return f'{self.nombre}'
 
 
     # Este método permite modificar un producto.
@@ -93,6 +94,8 @@ class Carrito(models.Model):
     direccion_entrega = models.CharField(verbose_name="Direccion de entrega", max_length=250)
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
     items_carrito = models.ForeignKey(ItemCarrito, on_delete=models.CASCADE)
+    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
+    compra_abierta = models.BooleanField(verbose_name="Compra abierta")
 
     def __str__(self):
         return f'Fecha: {self.fecha_de_compra} - Monto: {self.monto_total} - Cliente: {self.cliente}'

@@ -1,6 +1,14 @@
-{% extends "base.html" %}
+{% extends "ecommerce/base.html" %}
 {% load static %}
 {% block titulo %}-Ingrese{% endblock titulo %}-Productos
 {% block contenido%}
-    <h1>Esta será la pagina para el login.</h1>
+    <h1>Login</h1>
+    <div class="contacto__container">
+        <form method="POST">
+        {% csrf_token %}
+        {{form}}
+        <button id="submit" type="submit">ENVIAR</button>
+        </form>
+    </div>
+    <br>
 {% endblock contenido%}

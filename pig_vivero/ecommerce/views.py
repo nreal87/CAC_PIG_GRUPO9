@@ -7,6 +7,9 @@ from django.core.exceptions import ValidationError
 from django.contrib import messages
 from administracion.models import Cliente, Categoria, Producto
 from django.views.generic import ListView, CreateView, DeleteView, UpdateView
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.views import LogoutView
 
 
 def __buscar_categorias():
@@ -70,7 +73,7 @@ def secciones(request, seccion=''):
                "ahora": datetime.now,
                "formulario_contacto": formulario_contacto,
                "productos_index": __buscar_productos(), }
-    return render(request, "index.html", context)
+    return render(request, "ecommerce/index.html", context)
 
 
 def productos(request):
@@ -80,7 +83,7 @@ def productos(request):
                "productos": __buscar_productos_categoria(),
                "categorias": __buscar_categorias(),
                }
-    return render(request, "productos.html", context)
+    return render(request, "ecommerce/productos.html", context)
 
 
 def producto_id(request, id_prod):
@@ -90,7 +93,7 @@ def producto_id(request, id_prod):
                "productos": Producto.objects.filter(id=id_prod),
                "categorias": __buscar_categorias(),
                }
-    return render(request, "productos.html", context)
+    return render(request, "ecommerce/productos.html", context)
 
 
 def producto_categoria(request, categoria):
@@ -99,7 +102,7 @@ def producto_categoria(request, categoria):
                "productos": __buscar_productos_categoria(categoria),
                "categorias": __buscar_categorias(),
                "activo": categoria, }
-    return render(request, "productos.html", context)
+    return render(request, "ecommerce/productos.html", context)
 
 
 # En esta vista deberiamos manejar la visualizacion del carrito del usuario con los productos elegidos, cantidades, precios y total
@@ -107,8 +110,8 @@ class ProductosListView(ListView):
     model = Producto
     context_object_name = 'productos'
     template_name = 'ecommerce/carrito.html'
-    queryset = Categoria.objects.all()
-    ordering = ['nombre']
+    queryset = Producto.objects.all()
+    # ordering = ['nombre']
 
 
 
@@ -117,14 +120,26 @@ def comprar_carrito(request):
     context = {"ahora": datetime.now,
                "productos": __buscar_productos()
                }
-    return render(request, "compra.html", context)
+    return render(request, "ecommerce/compra.html", context)
 
 
 # A implementar luego cuando veamos como lo resuelve Django
-def login(request):
-
-    context = {"ahora": datetime.now}
-    return render(request, "login.html", context)
+def ecommerce_login(request):
+    if request.method == 'POST':
+        # AuthenticationForm_can_also_be_used__
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            form = login(request, user)
+            messages.success(request, f' Bienvenido/a {username} !!')
+            return redirect('secciones')
+        else:
+            messages.error(request, f'Cuenta o password incorrecto, realice el login correctamente')
+    form = AuthenticationForm()
+    context = {"ahora": datetime.now,
+               'form': form}
+    return render(request, "ecommerce/login.html", context)
 
 
 # Esta vista permite crear mas facil todas las instancias que deben existir en la db inicialmente
