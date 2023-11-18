@@ -5,11 +5,14 @@ from django.http import HttpResponse, HttpResponseBadRequest
 from django.shortcuts import render, redirect
 from django.core.exceptions import ValidationError
 from django.contrib import messages
-from administracion.models import Cliente, Categoria, Producto
+from administracion.models import Cliente, Categoria, Producto, Carrito, ItemCarrito
+from administracion.forms import UserRegisterForm
 from django.views.generic import ListView, CreateView, DeleteView, UpdateView
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.views import LogoutView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 
 
 def __buscar_categorias():
@@ -106,12 +109,30 @@ def producto_categoria(request, categoria):
 
 
 # En esta vista deberiamos manejar la visualizacion del carrito del usuario con los productos elegidos, cantidades, precios y total
-class ProductosListView(ListView):
+class ProductosListView(LoginRequiredMixin,ListView):
     model = Producto
     context_object_name = 'productos'
     template_name = 'ecommerce/carrito.html'
     queryset = Producto.objects.all()
-    # ordering = ['nombre']
+
+
+# En esta vista deberiamos manejar la visualizacion del carrito del usuario con los productos elegidos, cantidades, precios y total
+class CarritoListView(LoginRequiredMixin,ListView):
+    model = ItemCarrito
+    context_object_name = 'Carrito'
+    template_name = 'ecommerce/carrito.html'
+    # queryset = ItemCarrito.objects.filter(carrito=self.request.user.cliente.carrito)
+
+@login_required(login_url="ecommerce_login")
+def ver_carrito(request):
+    """Esta vista nos permite mostrar los items del carrito activo del usuario """
+    carrito_cliente=Carrito.objects.filter(cliente=request.user.cliente, compra_abierta=True)
+    items_carrito = ItemCarrito.objects.filter(carrito=carrito_cliente[0])
+    
+    context = {"ahora": datetime.now,
+               "items_carrito": items_carrito }
+    return render(request, "ecommerce/carrito.html", context)
+
 
 
 
@@ -141,6 +162,29 @@ def ecommerce_login(request):
                'form': form}
     return render(request, "ecommerce/login.html", context)
 
+def ecommerce_registrarse(request):
+    if request.method == 'POST':
+        form = UserRegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            first_name = form.cleaned_data.get('first_name')
+            last_name = form.cleaned_data.get('last_name')
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password1')
+            user_email = form.cleaned_data.get('email')
+            messages.success(request, f'Tu cuenta fue creada con éxito! Ya te podes loguear en el sistema.')
+            user = authenticate(request, username=username, password=password)
+            login(request, user)
+
+            # Aca se crea la instancia de cliente con el primer carrito asociado
+            NuevoCliente = Cliente(nombre=first_name, apellido=last_name, dni=0, email=user_email, numero_de_cliente=user.id, usuario=user)
+            NuevoCliente.save()
+            NuevoCarrito = Carrito(compra_abierta=True, cliente=NuevoCliente, monto_total=0)
+            NuevoCarrito.save()
+            return redirect('secciones')
+    else:
+        form = UserRegisterForm()
+    return render(request, 'ecommerce/registrarse.html', {'form': form, 'title': 'registrese aquí'})
 
 # Esta vista permite crear mas facil todas las instancias que deben existir en la db inicialmente
 def iniciar_db(request):

@@ -1,7 +1,5 @@
 from django.db import models
-
-# Create your models here.
-from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -9,14 +7,15 @@ from django.db import models
 # Clase "Cliente"
 # -------------------------------------------------------------------
 class Cliente(models.Model):
+    usuario = models.OneToOneField(User, on_delete=models.CASCADE, default=None)
     numero_de_cliente = models.IntegerField(verbose_name="Numero de cliente")
     nombre = models.CharField(verbose_name="Nombre", max_length=250)
     apellido = models.CharField(verbose_name="Apellido", max_length=250)
     dni = models.IntegerField(verbose_name="DNI")
     email = models.EmailField(verbose_name="E-Mail", max_length=250)
-
+    
     def __str__(self):
-        return f'Nombre: {self.nombre} - Apellido: {self.apellido} - dni: {self.dni}'
+        return f'{self.nombre} {self.apellido}'
 
 
 # -------------------------------------------------------------------
@@ -59,11 +58,32 @@ class Producto(models.Model):
         self.promocion = promocion
 
 
+
+# -------------------------------------------------------------------
+# Clase "Carrito"
+# -------------------------------------------------------------------
+class Carrito(models.Model):
+    monto_total = models.FloatField(verbose_name="Monto total")
+    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
+    compra_abierta = models.BooleanField(verbose_name="Compra abierta",default=True)
+
+    def __str__(self):
+        return f'Cliente: {self.cliente}'
+    
+    #Acá tenemos que agregar los mpetodos para crear el carro
+    # def crear_carro():
+    #     pass
+    # def eliminar_carro():
+    #     pass
+    # def calcular_total():
+
+
 # -------------------------------------------------------------------
 # Clase "ItemCarrito"
 # -------------------------------------------------------------------
 class ItemCarrito(models.Model):
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
+    carrito = models.ForeignKey(Carrito, on_delete=models.CASCADE,default=None)
     cantidad = models.IntegerField(verbose_name="cantidad")
     subtotal = models.FloatField(verbose_name="Subtotal")
 
@@ -83,26 +103,3 @@ class ItemCarrito(models.Model):
     #     pass
     # def calcular_subtotal():
     #     pass
-
-
-# -------------------------------------------------------------------
-# Clase "Carrito"
-# -------------------------------------------------------------------
-class Carrito(models.Model):
-    fecha_de_compra = models.DateField(verbose_name="Fecha de compra")
-    monto_total = models.FloatField(verbose_name="Monto total")
-    direccion_entrega = models.CharField(verbose_name="Direccion de entrega", max_length=250)
-    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
-    items_carrito = models.ForeignKey(ItemCarrito, on_delete=models.CASCADE)
-    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
-    compra_abierta = models.BooleanField(verbose_name="Compra abierta")
-
-    def __str__(self):
-        return f'Fecha: {self.fecha_de_compra} - Monto: {self.monto_total} - Cliente: {self.cliente}'
-    
-    #Acá tenemos que agregar los mpetodos para crear el carro
-    # def crear_carro():
-    #     pass
-    # def eliminar_carro():
-    #     pass
-    # def calcular_total():

@@ -40,12 +40,12 @@
       </ul>
       <ul class="carrito">
         {% if user.is_authenticated %}
-          <p type="text" style="display: inline" class="">Bienvenido\a, {{ user.username }}.</p>
-          {% comment %} <li class="menu_li" href="{% url 'ecommerce_logout' %}">Cerrar Sesión</li> {% endcomment %}
+          <li class="menu_li"><a class="menu_link">Usuario: {{ user.username }}</a></li>
+          <li class="menu_li"><a class="menu_link" href="{% url 'ecommerce_logout' %}">Cerrar Sesión</a></li>
         {% else %}
-          <li class="menu_li"><a class="menu_link" href="{% url "ecommerce_login" %}">INGRESAR ec</a></li>
+          <li class="menu_li"><a class="menu_link" href="{% url "ecommerce_login" %}">INGRESAR</a></li>
+          <li class="menu_li"><a class="menu_link" href="{% url "ecommerce_registrarse" %}">REGISTRARSE</a></li>
         {% endif %}
-        <!-- <li class="menu_li"><a class="menu_link" href="#">Log Out</a></li> -->
         <li class="menu_li"><a class="menu_link" href="{% url "ver_carrito" %}"><i class="fa fa-shopping-cart"></i></a></li>
       </ul>
         <!-- MENU PARA CELULAR -->
@@ -62,8 +62,13 @@
             <li class="menu_li"><a class="menu_link" href="{% url "secciones" "contacto" %}">CONTACTO</a></li>
             <br>
             <br>
-            <li class="menu_li"><a class="menu_link" href="{% url "ecommerce_login" %}">INGRESAR</a></li>
-            <!-- <li class="menu_li"><a class="menu_link" href="#">Log Out</a></li> -->
+            {% if user.is_authenticated %}
+              <li class="menu_li"><a class="menu_link">Usuario: {{ user.username }}</a></li>
+              <li class="menu_li"><a class="menu_link" href="{% url 'ecommerce_logout' %}">Cerrar Sesión</a></li>
+            {% else %}
+              <li class="menu_li"><a class="menu_link" href="{% url "ecommerce_login" %}">INGRESAR</a></li>
+              <li class="menu_li"><a class="menu_link" href="{% url "ecommerce_registrarse" %}">REGISTRARSE</a></li>
+            {% endif %}
             <li class="menu_li"><a class="menu_link" href="#"><i class="fa fa-shopping-cart"></i></a></li>
           </ul>
         </div>

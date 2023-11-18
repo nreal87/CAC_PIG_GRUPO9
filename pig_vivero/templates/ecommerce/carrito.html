@@ -13,23 +13,27 @@
             <tr>
               <th scope="col">Nombre</th>
               <th scope="col">Descripción</th>
-              <th scope="col">Precio</th>
+              <th scope="col">Precio unitario</th>
               <th scope="col">Stock</th>
-              <th scope="col">Categoría</th>
               <th scope="col">Imagen</th>
-              <th scope="col">Acciones</th>
+              <th scope="col">Agregar</th>
+              <th scope="col">Cantidad</th>
+              <th scope="col">Quitar</th>
+              <th scope="col">Eliminar</th>
             </tr>
           </thead>
           <tbody id="productosBody">
-            {% for producto in productos %}
+            {% for item_carrito in items_carrito %}
                 <tr>
-                    <td>{{producto.nombre}}</td>
-                    <td>{{producto.descripcion}}</td>
-                    <td>{{producto.precio}}</td>
-                    <td>{{producto.cantidad}}</td>
-                    <td>{{producto.categoria}}</td>
-                    <td><img class="card-img-top" data-src= alt="imagen del producto" style="height: 30px; width: 30px; display: block;" src={{producto.imagen.url}} data-holder-rendered="true"></td>
-                    <td>acciones</td>
+                  <td>{{item_carrito.producto.nombre}}</td>
+                  <td>{{item_carrito.producto.descripcion}}</td>
+                  <td>{{item_carrito.producto.precio}}</td>
+                  <td>{{item_carrito.producto.cantidad}}</td>
+                  <td><img class="card-img-top" data-src= alt="imagen del producto" style="height: 30px; width: 30px; display: block;" src={{item_carrito.producto.imagen.url}} data-holder-rendered="true"></td>
+                  <td>+</td>
+                  <td>{{item_carrito.cantidad}}</td>
+                  <td>-</td>
+                  <td>Eliminar</td>
                 </tr>
             {% endfor %}
           </tbody>
