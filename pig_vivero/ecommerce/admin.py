@@ -1,6 +1,5 @@
 from django.contrib import admin
-<<<<<<< HEAD
-from administracion.models import Categoria, Producto
+from administracion.models import Categoria, Producto, Carrito, ItemCarrito
 from django.contrib.auth.models import User
 # Register your models here.
 

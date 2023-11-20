@@ -1,12 +1,21 @@
-<form action="" method="POST">
-    {% csrf_token %}
-    {% for campo in form %}
-      <div class="mb-3 mt-3">
-        <label for="name">{{ campo.label }}</label>
-        {{campo}}
-        <div>{{campo.errors}}</div>
-      </div>    
-      
-    {% endfor %}
-    <button type="submit" class="btn btn-primary">MODIFICAR</button>
+{% extends "ecommerce/base.html" %}
+{% load static %}
+{% block titulo %}Administracion - Editar Producto{% endblock titulo %}
+{% block contenido%}
+
+<div class="container mt-3">
+  <h2>Editar Producto</h2>
+  <form action="" method="POST">
+      {% csrf_token %}
+      {% for campo in form %}
+        <div class="mb-3 mt-3">
+          <label for="name">{{ campo.label }}</label>
+          {{campo}}
+          <div>{{campo.errors}}</div>
+        </div>    
+        
+      {% endfor %}
+      <button type="submit" class="btn btn-primary">MODIFICAR</button>
   </form> 
+</div>
+{% endblock contenido%}

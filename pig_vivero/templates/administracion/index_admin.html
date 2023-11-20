@@ -1,17 +1,14 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+{% extends "ecommerce/base.html" %}
+{% load static %}
+{% block titulo %}Administracion{% endblock titulo %}
+
+{% block contenido%}
     <main>
-        <table>
+        <table class="table">
             <thead>
                 <th>
                     <tr>
-                        <td>Tablas</td>
+                        <td>Tablas Administrables</td>
                     </tr>
                 </th>
             </thead>
@@ -29,5 +26,5 @@
             </tbody>
         </table>
     </main>    
-</body>
-</html>
+    
+{% endblock contenido %}

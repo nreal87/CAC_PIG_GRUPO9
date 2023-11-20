@@ -31,6 +31,10 @@
         <li class="menu_li"><a class="menu_link" href="{% url "secciones" "servicios" %}">SERVICIOS</a></li>
         <li class="menu_li"><a class="menu_link" href="{% url "secciones" "about_us" %}">NOSOTROS</a></li>
         <li class="menu_li"><a class="menu_link" href="{% url "secciones" "contacto" %}">CONTACTO</a></li>
+        {% if perms.administracion %}
+        <li class="menu_li"><a class="menu_link" href="{% url "index_administracion" %}">ADMINISTRACION</a></li>
+        {% endif %}
+        
         <li class="menu_li">
           <form action="#" class="form-busqueda">
             <input type="search" placeholder="Buscar...">
@@ -60,6 +64,7 @@
             <li class="menu_li"><a class="menu_link" href="{% url "secciones" "servicios" %}">SERVICIOS</a></li>
             <li class="menu_li"><a class="menu_link" href="{% url "secciones" "about_us" %}">NOSOTROS</a></li>
             <li class="menu_li"><a class="menu_link" href="{% url "secciones" "contacto" %}">CONTACTO</a></li>
+            <li class="menu_li"><a class="menu_link" href="{% url "index_administracion" %}">ADMINISTRACION</a></li>
             <br>
             <br>
             {% if user.is_authenticated %}
