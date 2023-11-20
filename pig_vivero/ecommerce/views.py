@@ -5,7 +5,14 @@ from django.http import HttpResponse, HttpResponseBadRequest
 from django.shortcuts import render, redirect
 from django.core.exceptions import ValidationError
 from django.contrib import messages
-from administracion.models import Cliente, Categoria, Producto
+from administracion.models import Cliente, Categoria, Producto, Carrito, ItemCarrito
+from administracion.forms import UserRegisterForm
+from django.views.generic import ListView, CreateView, DeleteView, UpdateView
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.views import LogoutView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 
 
 def __buscar_categorias():
@@ -69,7 +76,7 @@ def secciones(request, seccion=''):
                "ahora": datetime.now,
                "formulario_contacto": formulario_contacto,
                "productos_index": __buscar_productos(), }
-    return render(request, "index.html", context)
+    return render(request, "ecommerce/index.html", context)
 
 
 def productos(request):
@@ -79,7 +86,7 @@ def productos(request):
                "productos": __buscar_productos_categoria(),
                "categorias": __buscar_categorias(),
                }
-    return render(request, "productos.html", context)
+    return render(request, "ecommerce/productos.html", context)
 
 
 def producto_id(request, id_prod):
@@ -89,7 +96,7 @@ def producto_id(request, id_prod):
                "productos": Producto.objects.filter(id=id_prod),
                "categorias": __buscar_categorias(),
                }
-    return render(request, "productos.html", context)
+    return render(request, "ecommerce/productos.html", context)
 
 
 def producto_categoria(request, categoria):
@@ -98,15 +105,35 @@ def producto_categoria(request, categoria):
                "productos": __buscar_productos_categoria(categoria),
                "categorias": __buscar_categorias(),
                "activo": categoria, }
-    return render(request, "productos.html", context)
+    return render(request, "ecommerce/productos.html", context)
 
 
 # En esta vista deberiamos manejar la visualizacion del carrito del usuario con los productos elegidos, cantidades, precios y total
+class ProductosListView(LoginRequiredMixin,ListView):
+    model = Producto
+    context_object_name = 'productos'
+    template_name = 'ecommerce/carrito.html'
+    queryset = Producto.objects.all()
+
+
+# En esta vista deberiamos manejar la visualizacion del carrito del usuario con los productos elegidos, cantidades, precios y total
+class CarritoListView(LoginRequiredMixin,ListView):
+    model = ItemCarrito
+    context_object_name = 'Carrito'
+    template_name = 'ecommerce/carrito.html'
+    # queryset = ItemCarrito.objects.filter(carrito=self.request.user.cliente.carrito)
+
+@login_required(login_url="ecommerce_login")
 def ver_carrito(request):
+    """Esta vista nos permite mostrar los items del carrito activo del usuario """
+    carrito_cliente=Carrito.objects.filter(cliente=request.user.cliente, compra_abierta=True)
+    items_carrito = ItemCarrito.objects.filter(carrito=carrito_cliente[0])
+    
     context = {"ahora": datetime.now,
-               "productos": __buscar_productos()
-               }
-    return render(request, "carrito.html", context)
+               "items_carrito": items_carrito }
+    return render(request, "ecommerce/carrito.html", context)
+
+
 
 
 # En esta vista deberiamos manejar la validacion de la compra del carrito y mostrar un mensaje de exito o error en la operacion
@@ -114,15 +141,50 @@ def comprar_carrito(request):
     context = {"ahora": datetime.now,
                "productos": __buscar_productos()
                }
-    return render(request, "compra.html", context)
+    return render(request, "ecommerce/compra.html", context)
 
 
 # A implementar luego cuando veamos como lo resuelve Django
-def login(request):
+def ecommerce_login(request):
+    if request.method == 'POST':
+        # AuthenticationForm_can_also_be_used__
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            form = login(request, user)
+            messages.success(request, f' Bienvenido/a {username} !!')
+            return redirect('secciones')
+        else:
+            messages.error(request, f'Cuenta o password incorrecto, realice el login correctamente')
+    form = AuthenticationForm()
+    context = {"ahora": datetime.now,
+               'form': form}
+    return render(request, "ecommerce/login.html", context)
 
-    context = {"ahora": datetime.now}
-    return render(request, "login.html", context)
+def ecommerce_registrarse(request):
+    if request.method == 'POST':
+        form = UserRegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            first_name = form.cleaned_data.get('first_name')
+            last_name = form.cleaned_data.get('last_name')
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password1')
+            user_email = form.cleaned_data.get('email')
+            messages.success(request, f'Tu cuenta fue creada con éxito! Ya te podes loguear en el sistema.')
+            user = authenticate(request, username=username, password=password)
+            login(request, user)
 
+            # Aca se crea la instancia de cliente con el primer carrito asociado
+            NuevoCliente = Cliente(nombre=first_name, apellido=last_name, dni=0, email=user_email, numero_de_cliente=user.id, usuario=user)
+            NuevoCliente.save()
+            NuevoCarrito = Carrito(compra_abierta=True, cliente=NuevoCliente, monto_total=0)
+            NuevoCarrito.save()
+            return redirect('secciones')
+    else:
+        form = UserRegisterForm()
+    return render(request, 'ecommerce/registrarse.html', {'form': form, 'title': 'registrese aquí'})
 
 # Esta vista permite crear mas facil todas las instancias que deben existir en la db inicialmente
 def iniciar_db(request):
@@ -142,22 +204,22 @@ def iniciar_db(request):
     Categoria6.save()
     Categoria7.save()
     # Creacion de productos
-    # Producto1 = Producto(promocion=True, nombre="lirio rojo", descripcion="Simbolismo: Amor y seducción", precio=8500.0, cantidad=20, categoria_id=Categoria1.id)
-    # Producto2 = Producto(promocion=True, nombre="lirio blanco", descripcion="Simbolismo: Pureza y belleza", precio=8000.0, categoria_id=Categoria1.id)
-    # Producto3 = Producto(promocion=True, nombre="lirio naranja", descripcion="Simbolismo: Pasion", precio=8000.0, categoria_id=Categoria1.id)
-    # Producto4 = Producto(promocion=True, nombre="arboles frutales", descripcion="Consultar segun la temporada", precio=8000.0, categoria_id=Categoria2.id)
-    # Producto5 = Producto(promocion=True, nombre="cactus", descripcion="Fuentes de exito personal y laboral", precio=8000.0, categoria_id=Categoria3.id)
-    # Producto6 = Producto(promocion=True, nombre="gromineas", descripcion="Plantita espectacular para decorar", precio=8000.0, categoria_id=Categoria4.id)
-    # Producto7 = Producto(promocion=True, nombre="fuentes", descripcion="Contamos con distintos modelos", precio=8000.0, categoria_id=Categoria5.id)
-    # Producto8 = Producto(promocion=True, nombre="macetas", descripcion="Variedad de colores y modelos", precio=8000.0, categoria_id=Categoria6.id)
-    # Producto9 = Producto(promocion=True, nombre="herramientas", descripcion="Palas, regaderas, mangueras y mas", precio=8000.0, categoria_id=Categoria7.id)
-    # Producto1.save()
-    # Producto2.save()
-    # Producto3.save()
-    # Producto4.save()
-    # Producto5.save()
-    # Producto6.save()
-    # Producto7.save()
-    # Producto8.save()
-    # Producto9.save()
+    Producto1 = Producto(promocion=True, nombre="lirio rojo", descripcion="Simbolismo: Amor y seducción", precio=8500.0, cantidad=20, categoria_id=Categoria1.id)
+    Producto2 = Producto(promocion=True, nombre="lirio blanco", descripcion="Simbolismo: Pureza y belleza", precio=8000.0, categoria_id=Categoria1.id)
+    Producto3 = Producto(promocion=True, nombre="lirio naranja", descripcion="Simbolismo: Pasion", precio=8000.0, categoria_id=Categoria1.id)
+    Producto4 = Producto(promocion=True, nombre="arboles frutales", descripcion="Consultar segun la temporada", precio=8000.0, categoria_id=Categoria2.id)
+    Producto5 = Producto(promocion=True, nombre="cactus", descripcion="Fuentes de exito personal y laboral", precio=8000.0, categoria_id=Categoria3.id)
+    Producto6 = Producto(promocion=True, nombre="gromineas", descripcion="Plantita espectacular para decorar", precio=8000.0, categoria_id=Categoria4.id)
+    Producto7 = Producto(promocion=True, nombre="fuentes", descripcion="Contamos con distintos modelos", precio=8000.0, categoria_id=Categoria5.id)
+    Producto8 = Producto(promocion=True, nombre="macetas", descripcion="Variedad de colores y modelos", precio=8000.0, categoria_id=Categoria6.id)
+    Producto9 = Producto(promocion=True, nombre="herramientas", descripcion="Palas, regaderas, mangueras y mas", precio=8000.0, categoria_id=Categoria7.id)
+    Producto1.save()
+    Producto2.save()
+    Producto3.save()
+    Producto4.save()
+    Producto5.save()
+    Producto6.save()
+    Producto7.save()
+    Producto8.save()
+    Producto9.save()
     return redirect("secciones")
