@@ -1,6 +1,8 @@
 from django.contrib import admin
+
 from administracion.models import Categoria, Producto, Carrito, ItemCarrito
 from django.contrib.auth.models import User
+
 # Register your models here.
 
 #con esto registramos los modelos que tiene la relacion muchos a muchos
