@@ -1,25 +1,22 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    editar categoria
+{% extends "ecommerce/base.html" %}
+{% load static %}
+{% block titulo %}Administracion - Editar Categoria{% endblock titulo %}
+{% block contenido%}
 
-    <form action="" method="post">
-        {% csrf_token %}
-        {% for campo in form %}
-          <div class="mb-3 mt-3">
-            <label for="name">{{ campo.label }}</label>
-            {{campo}}
-            <div>{{campo.errors}}</div>
-          </div>    
-          
-        {% endfor %}
-        <button type="submit" class="btn btn-primary">EDITAR</button>
-      </form> 
+<div class="container mt-3">
+  <h2>Editar Categoria</h2>
+  <form action="" method="post">
+    {% csrf_token %}
+    {% for campo in form %}
+      <div class="mb-3 mt-3">
+        <label for="name">{{ campo.label }}</label>
+        {{campo}}
+        <div>{{campo.errors}}</div>
+      </div>    
+      
+    {% endfor %}
+    <button type="submit" class="btn btn-primary">EDITAR</button>
+  </form> 
+</div>
    
-</body>
-</html>
+{% endblock contenido%}

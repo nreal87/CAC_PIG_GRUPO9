@@ -32,6 +32,7 @@ urlpatterns = [
     path('login/', views.ecommerce_login, name="ecommerce_login"),
     path('logout/',auth_views.LogoutView.as_view(template_name='ecommerce/index.html'),name="ecommerce_logout"),
     path('registrarse/',views.ecommerce_registrarse, name="ecommerce_registrarse"),
+    path('error/', views.error, name="error_404"),
     # Esta vista se crea para inicializar la db con instancias de los modelos mas facilmente
     path('iniciar_db/', views.iniciar_db, name="iniciar_db"),
     # Esta url debe ser la ultima porque si no matcheo con otra antes es porque va a asumir que es una seccion del index

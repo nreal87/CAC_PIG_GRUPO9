@@ -29,15 +29,19 @@ def __buscar_productos_categoria(cat="todas"):
     if cat == "todas":
         productos = Producto.objects.all()
     else:
-        consulta_categoria = Categoria.objects.filter(nombre=cat)
-        productos = Producto.objects.filter(categoria=consulta_categoria[0].id)
-
+        #consulta_categoria = Categoria.objects.filter(nombre=cat)
+        #productos = Producto.objects.filter(categoria=consulta_categoria[0].id)
+        productos = Producto.objects.filter(categoria__nombre=cat)
+    
     productos_lista = []
     for prod in productos:
         productos_lista.append({"nombre": prod.nombre, "descripcion": prod.descripcion, "precio": prod.precio, "stock": prod.cantidad,
                                 "categoria": prod.categoria, "imagen": prod.imagen})
     return productos_lista
 
+def error(request):
+    context = {"ahora": datetime.now}
+    return render(request, "ecommerce/404.html",context)
 
 def __buscar_productos(nombreProd=""):
     """ La funcion busca un producto por su nombre, si no le pasamos ningun nombre 
