@@ -53,7 +53,7 @@
 
       {% for producto in productos_index %}
         <div class="grid_item">
-            <img src={{producto.imagen}} alt="" class="image_item" >
+            <img src={{producto.imagen.url}} alt="" class="image_item" >
             <div class="card_info">
             <h4 class="card_title"> {{producto.nombre | upper}} </h4>
             <p class="card_text">{{producto.descripcion  | capfirst }}</p>
